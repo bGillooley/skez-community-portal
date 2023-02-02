@@ -1,8 +1,14 @@
 import React from "react";
 
-const formatDate = (dateString: string) => {
-  const options = { day: "numeric", month: "short", weekday: "short" };
-  return new Date(dateString).toLocaleDateString("en-GB", options);
+const formatDate = (dateString) => {
+  const timeformat: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    hour12: false,
+  };
+
+  return new Date(dateString).toLocaleDateString("en-GB", timeformat);
 };
 
 export type PostProps = {
