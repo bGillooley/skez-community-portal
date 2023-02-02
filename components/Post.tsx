@@ -1,13 +1,14 @@
 import React from "react";
 
 const formatDate = (dateString) => {
-  const timeformat: Intl.DateTimeFormatOptions = {
+  const timeformat = {
     weekday: "short",
     month: "short",
     day: "numeric",
     hour12: false,
-  };
+  } as const;
 
+  const options = { day: "numeric", month: "short", weekday: "short" };
   return new Date(dateString).toLocaleDateString("en-GB", timeformat);
 };
 
