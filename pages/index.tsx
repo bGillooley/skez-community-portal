@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const getStaticProps: GetStaticProps = async () => {
   let feed = await prisma.event.findMany({
+    take: 6,
     where: { published: true },
     include: {
       author: {
