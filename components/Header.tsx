@@ -122,15 +122,18 @@ const Header: React.FC = () => {
             Home
           </a>
         </Link>
-
-        <Link href="/event-drafts" legacyBehavior>
-          <a data-active={isActive("/event-drafts")}>
-            View {session.user.name}'s Event Drafts
-          </a>
-        </Link>
+        {session.user.role === "editor" && (
+          <Link href="/event-drafts" legacyBehavior>
+            <a data-active={isActive("/event-drafts")}>
+              {session.user.name}'s Events
+            </a>
+          </Link>
+        )}
         {session.user.role === "admin" && (
           <Link href="/publish-event" legacyBehavior>
-            <a data-active={isActive("/publish-event")}>Moderate/Publish</a>
+            <a data-active={isActive("/publish-event")}>
+              Moderate/Publish/Delete
+            </a>
           </Link>
         )}
 

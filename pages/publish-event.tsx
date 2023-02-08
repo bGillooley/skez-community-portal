@@ -18,9 +18,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   }
 
   let drafts = await prisma.event.findMany({
-    where: {
-      published: false,
-    },
     orderBy: {
       eventDate: "asc",
     },
@@ -96,30 +93,30 @@ const Drafts: React.FC<Props> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="mx-auto my-16 max-w-md">
-        <h1>Publish Events</h1>
-        <main>
+      <div className="mx-4 lg:mx-auto mt-48 max-w-5xl">
+        <h1 className="text-4xl pb-8">All Events</h1>
+        <main className="lg:grid lg:grid-cols-3 lg:gap-4">
           {props.drafts.map((event) => (
-            <>
-              <div
-                key={event.id}
-                className="flex relative justify-between bg-white drop-shadow-md  mb-2 lg:mb-0 rounded-md py-2 px-3"
-              >
-                <Event event={event} />
+            <div className="mb-4 lg:mb-0 rounded border border-gray-100 bg-slate-50">
+              <Event event={event} />
+              <div className="p-2 shadow-inner">
+                {!event.published && (
+                  <button
+                    className="mb-2 lg:mb-0 inline-flex w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    onClick={() => publishPost(event.id)}
+                  >
+                    Publish Event
+                  </button>
+                )}
+
+                <button
+                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  onClick={() => deletePost(event.id)}
+                >
+                  Delete Event
+                </button>
               </div>
-              <button
-                className="py-4 pr-4"
-                onClick={() => publishPost(event.id)}
-              >
-                Publish
-              </button>
-              <button
-                className="py-4 pr-4 text-red-600"
-                onClick={() => deletePost(event.id)}
-              >
-                Delete
-              </button>
-            </>
+            </div>
           ))}
         </main>
       </div>

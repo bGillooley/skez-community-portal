@@ -97,7 +97,7 @@ const Home: React.FC<Props> = (props) => {
                 {props.feed.map((event, index) => (
                   <div
                     key={event.id}
-                    className={`flex relative justify-between bg-white drop-shadow-md col-span-2 col-start-1 mb-2 lg:mb-0 rounded-md py-2 px-3 row-start-${
+                    className={`mb-2 lg:mb-0 col-span-2 col-start-1 row-start-${
                       index + 1
                     }`}
                   >
