@@ -24,7 +24,7 @@ export type EventProps = {
 
 const Post: React.FC<{ event: EventProps }> = ({ event }) => {
   const encodedAddress = encodeURIComponent(event.address);
-  const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=18&markers=color:blue|${encodedAddress}&size=400x400&key=AIzaSyA4BalRHLk2OCd_j-xiyBBfJSXBpiq2J8s`;
+  const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=18&markers=color:blue|${encodedAddress}&size=400x400&key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAP_KEY}`;
   const [showDetails, setShowDetails] = useState(false);
   return (
     <>
