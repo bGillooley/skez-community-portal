@@ -59,7 +59,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
               />
 
               <form
-                action="http://maps.google.com/maps"
+                action="https://maps.google.com/maps"
                 method="get"
                 target="_blank"
               >
