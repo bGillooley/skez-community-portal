@@ -6,6 +6,7 @@ import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
 import Image from "next/image";
 import themeImg from "../public/static/skerries-windmill.jpg";
+import Trains from "components/Trains";
 import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -134,9 +135,7 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
         <div>
-          John the baby
-          <br />
-          John Doe
+          <Trains />
         </div>
       </main>
     </>
