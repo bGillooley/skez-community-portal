@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Trains = () => {
   const [trains, setTrains] = useState([]);
   const fetchTrains = async () => {
-    const response = await fetch("/api/trains", {
+    const response = await fetch("http://localhost:3000/api/trains", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
