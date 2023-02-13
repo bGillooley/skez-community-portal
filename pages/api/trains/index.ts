@@ -18,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           destination: result.Destination,
         };
       });
-      res.end(JSON.stringify(result));
+      res.send(JSON.stringify(result));
     })
     .catch((error) => {
       console.log(error);
