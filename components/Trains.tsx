@@ -4,7 +4,7 @@ const Trains = () => {
   const [trains, setTrains] = useState([]);
   const fetchTrains = async () => {
     const response = await fetch(
-      "https://skez-community-portal-billy-gillooley.vercel.app/api/trains",
+      "https://skez-community-portal-billy.vercel.app/api/trains",
       {
         method: "GET",
         headers: {
