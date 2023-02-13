@@ -3,15 +3,12 @@ import React, { useState } from "react";
 const Trains = () => {
   const [trains, setTrains] = useState([]);
   const fetchTrains = async () => {
-    const response = await fetch(
-      "https://skez-community-portal-billy.vercel.app/api/trains",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch("/api/trains", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
