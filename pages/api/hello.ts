@@ -10,7 +10,10 @@ export default async function handler(
   const parser = new XMLParser();
   try {
     const response = await axios.get(
-      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
+      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries",
+      {
+        "Content-Type": "application/xml; charset=utf-8",
+      }
     );
     console.log(response);
     let jObj = parser.parse(response.data);
