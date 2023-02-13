@@ -2,17 +2,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { XMLParser } from "fast-xml-parser";
 
+import axios from "axios";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const parser = new XMLParser();
   try {
-    const response = await fetch(
+    const response = await axios.get(
       "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
     );
-    const data = await response.text();
-    let jObj = await parser.parse(data);
+    console.log(response);
+    let jObj = parser.parse(response.data);
     let trains = jObj.ArrayOfObjStationData.objStationData;
     let result = trains.map((result) => {
       return {
