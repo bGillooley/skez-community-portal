@@ -6,6 +6,13 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let mitch = await getTrains();
-  res.status(200).json(mitch);
+  try {
+    let mitch = await fetch(
+      "https://api.kucoin.com/api/v1/market/stats?symbol=BTC-USDT"
+    );
+    const data = await mitch.json();
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err);
+  }
 }
