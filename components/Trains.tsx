@@ -21,7 +21,7 @@ const Trains = () => {
 
   return (
     <main>
-      <h1>Fetch A Twitter Follower</h1>
+      <h1>Look at this:</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Enter a Twitter username
