@@ -8,6 +8,7 @@ import Image from "next/image";
 import themeImg from "../public/static/skerries-windmill.jpg";
 import Trains from "components/Trains";
 import Header from "@/components/Header";
+import Tides from "@/components/Tides";
 const inter = Inter({ subsets: ["latin"] });
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -135,6 +136,7 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
         <div>
+          <Tides />
           <Trains />
         </div>
       </main>

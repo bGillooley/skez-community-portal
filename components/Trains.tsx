@@ -1,36 +1,43 @@
 import React, { useState } from "react";
 
 const Trains = () => {
-  const [trains, setTrains] = useState([]);
-  const fetchTrains = async () => {
-    const response = await fetch("/api/trains", {
-      method: "GET",
+  const [inputValue, setInputValue] = React.useState("");
+  const [userFollowers, setUserFollowers] = React.useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("/api/followers", {
+      method: "post",
       headers: {
-        "Content-Type": "application/json",
+        "content-type": "application/json",
       },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status}`);
-    }
-
-    const trains = await response.json();
-    setTrains(trains);
-    return;
+      body: JSON.stringify({ TWuser: inputValue }),
+    })
+      .then((res) => res.json())
+      .then((userData) => {
+        setUserFollowers(userData);
+      });
   };
 
-  fetchTrains();
   return (
-    <div>
-      <h2>Next Trains</h2>
-      <small>From Skerries Train Station</small>
-      {trains.map((train, index) => (
-        <div className="text-white" key={index}>
-          <p>Destination: {train.destination}</p>
-          <p>Arrives{train.arrival}</p>
-        </div>
-      ))}
-    </div>
+    <main>
+      <h1>Fetch A Twitter Follower</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Enter a Twitter username
+          <input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+        </label>
+        <button>Submit</button>
+      </form>
+      {userFollowers.followerCount >= 0 ? (
+        <p>Followers: {userFollowers.followerCount}</p>
+      ) : (
+        <p>{userFollowers.error}</p>
+      )}
+    </main>
   );
 };
 

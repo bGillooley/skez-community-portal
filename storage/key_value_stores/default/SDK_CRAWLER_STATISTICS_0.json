@@ -1,0 +1,52 @@
+{
+  "requestsFinished": 0,
+  "requestsFailed": 1,
+  "requestsRetries": 1,
+  "requestsFailedPerMinute": 0,
+  "requestsFinishedPerMinute": 0,
+  "requestMinDurationMillis": null,
+  "requestMaxDurationMillis": 0,
+  "requestTotalFailedDurationMillis": 32097,
+  "requestTotalFinishedDurationMillis": 0,
+  "crawlerStartedAt": "2023-02-14T13:59:17.724Z",
+  "crawlerFinishedAt": "2023-02-14T14:01:37.261Z",
+  "statsPersistedAt": "2023-02-14T14:01:37.261Z",
+  "crawlerRuntimeMillis": 139907,
+  "crawlerLastStartTimestamp": 1676383157354,
+  "requestRetryHistogram": [
+    null,
+    null,
+    null,
+    1
+  ],
+  "statsId": 0,
+  "requestAvgFailedDurationMillis": 32097,
+  "requestAvgFinishedDurationMillis": null,
+  "requestTotalDurationMillis": 32097,
+  "requestsTotal": 1,
+  "requestsWithStatusCode": {
+    "200": 4
+  },
+  "errors": {
+    "webpack-internal:///./components/Tides.tsx:19:20": {
+      "missing error code": {
+        "TimeoutError": {
+          "page.waitForSelector: Timeout 30000ms exceeded.": {
+            "count": 1
+          }
+        }
+      }
+    }
+  },
+  "retryErrors": {
+    "webpack-internal:///./components/Tides.tsx:19:20": {
+      "missing error code": {
+        "TimeoutError": {
+          "page.waitForSelector: Timeout 30000ms exceeded.": {
+            "count": 3
+          }
+        }
+      }
+    }
+  }
+}

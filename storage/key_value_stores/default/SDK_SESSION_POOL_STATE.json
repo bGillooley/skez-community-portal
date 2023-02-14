@@ -1,0 +1,325 @@
+{
+  "usableSessionsCount": 5,
+  "retiredSessionsCount": 1,
+  "sessions": [
+    {
+      "id": "session_MD0O6YPuQY",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:49:17.887Z",
+      "createdAt": "2023-02-14T13:59:17.887Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_NZ71vy7zDh",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": [
+          {
+            "key": "_ALGOLIA",
+            "value": "anonymous-a6da392d-23c7-474a-a69e-e69127028149",
+            "expires": "2023-08-13T13:59:23.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:24.026Z",
+            "lastAccessed": "2023-02-14T14:00:31.773Z"
+          },
+          {
+            "key": "ApifyAcqSrc",
+            "value": "https://apify.com/store",
+            "expires": "2024-02-14T13:59:24.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.836Z",
+            "lastAccessed": "2023-02-14T14:00:31.781Z"
+          },
+          {
+            "key": "ApifyAcqRef",
+            "expires": "2024-02-14T13:59:24.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.837Z",
+            "lastAccessed": "2023-02-14T14:00:31.781Z"
+          },
+          {
+            "key": "__hstc",
+            "value": "160404322.5b7154312ae30f4256e4ba2b19cc0d4a.1676383165309.1676383165309.1676383165309.1",
+            "expires": "2023-08-13T13:59:25.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.839Z",
+            "lastAccessed": "2023-02-14T14:00:31.782Z"
+          },
+          {
+            "key": "hubspotutk",
+            "value": "5b7154312ae30f4256e4ba2b19cc0d4a",
+            "expires": "2023-08-13T13:59:25.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.840Z",
+            "lastAccessed": "2023-02-14T14:00:31.782Z"
+          },
+          {
+            "key": "__hssrc",
+            "value": "1",
+            "expires": "2023-02-14T14:49:57.833Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.841Z",
+            "lastAccessed": "2023-02-14T14:00:31.783Z"
+          },
+          {
+            "key": "__hssc",
+            "value": "160404322.1.1676383165309",
+            "expires": "2023-02-14T14:29:25.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.842Z",
+            "lastAccessed": "2023-02-14T14:00:31.783Z"
+          },
+          {
+            "key": "_gaexp",
+            "value": "GAX1.2.sBB8aUIQSe6ie5AoR8o4EQ.19475.1!GjWEk7mpS3-sd9k85wyD5g.19473.1",
+            "expires": "2023-04-28T00:00:00.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.843Z",
+            "lastAccessed": "2023-02-14T14:00:31.784Z"
+          },
+          {
+            "key": "OptanonConsent",
+            "value": "isGpcEnabled=0&datestamp=Tue+Feb+14+2023+13%3A59%3A27+GMT%2B0000+(Greenwich+Mean+Time)&version=202209.1.0&isIABGlobal=false&hosts=&consentId=0bfebdd7-aaf6-482c-bcfd-c9dd4d1d8dfb&interactionCount=0&landingPath=https%3A%2F%2Fapify.com%2Fstore&groups=C0001%3A1%2CC0002%3A0%2CC0003%3A0%2CC0004%3A0",
+            "expires": "2024-02-14T13:59:27.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.844Z",
+            "lastAccessed": "2023-02-14T14:00:31.785Z"
+          },
+          {
+            "key": "intercom-id-kod1r788",
+            "value": "f41ab877-1af3-491e-a4c0-d46807013396",
+            "expires": "2023-11-11T14:32:49.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.845Z",
+            "lastAccessed": "2023-02-14T14:00:31.787Z"
+          },
+          {
+            "key": "intercom-session-kod1r788",
+            "expires": "2023-02-21T13:59:29.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.846Z",
+            "lastAccessed": "2023-02-14T14:00:31.787Z"
+          },
+          {
+            "key": "intercom-device-id-kod1r788",
+            "value": "3b3e8037-8989-4ae9-bbb4-ff1053c78d60",
+            "expires": "2023-11-11T14:32:49.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T13:59:57.847Z",
+            "lastAccessed": "2023-02-14T14:00:31.788Z"
+          }
+        ]
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:49:17.889Z",
+      "createdAt": "2023-02-14T13:59:17.889Z",
+      "usageCount": 4,
+      "maxUsageCount": 50,
+      "errorScore": 6
+    },
+    {
+      "id": "session_60H9g3Vsz9",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:49:57.058Z",
+      "createdAt": "2023-02-14T13:59:57.058Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_1ZbBghDKjF",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:50:31.054Z",
+      "createdAt": "2023-02-14T14:00:31.054Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_1IzlH8eAUf",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:51:05.072Z",
+      "createdAt": "2023-02-14T14:01:05.072Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_ukl1cVBRU9",
+      "cookieJar": {
+        "version": "tough-cookie@4.1.2",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": [
+          {
+            "key": "ApifyAcqSrc",
+            "value": "https://apify.com/store",
+            "expires": "2024-02-14T14:01:06.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.158Z",
+            "lastAccessed": "2023-02-14T14:01:07.158Z"
+          },
+          {
+            "key": "ApifyAcqRef",
+            "expires": "2024-02-14T14:01:06.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.158Z",
+            "lastAccessed": "2023-02-14T14:01:07.158Z"
+          },
+          {
+            "key": "_ALGOLIA",
+            "value": "anonymous-60e29903-f10d-4e2f-b96c-216e13e3375b",
+            "expires": "2023-08-13T14:01:06.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.159Z",
+            "lastAccessed": "2023-02-14T14:01:07.159Z"
+          },
+          {
+            "key": "_gaexp",
+            "value": "GAX1.2.sBB8aUIQSe6ie5AoR8o4EQ.19475.0!GjWEk7mpS3-sd9k85wyD5g.19473.1",
+            "expires": "2023-04-28T00:00:00.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.160Z",
+            "lastAccessed": "2023-02-14T14:01:07.160Z"
+          },
+          {
+            "key": "__hstc",
+            "value": "160404322.cd47646752f8c6d517cfaa3172c051bb.1676383267151.1676383267151.1676383267151.1",
+            "expires": "2023-08-13T14:01:07.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.160Z",
+            "lastAccessed": "2023-02-14T14:01:07.160Z"
+          },
+          {
+            "key": "hubspotutk",
+            "value": "cd47646752f8c6d517cfaa3172c051bb",
+            "expires": "2023-08-13T14:01:07.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.160Z",
+            "lastAccessed": "2023-02-14T14:01:07.160Z"
+          },
+          {
+            "key": "__hssrc",
+            "value": "1",
+            "expires": "2023-02-14T14:51:07.158Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.161Z",
+            "lastAccessed": "2023-02-14T14:01:07.161Z"
+          },
+          {
+            "key": "__hssc",
+            "value": "160404322.1.1676383267152",
+            "expires": "2023-02-14T14:31:07.000Z",
+            "domain": "apify.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2023-02-14T14:01:07.161Z",
+            "lastAccessed": "2023-02-14T14:01:07.161Z"
+          }
+        ]
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2023-02-14T14:51:05.073Z",
+      "createdAt": "2023-02-14T14:01:05.073Z",
+      "usageCount": 1,
+      "maxUsageCount": 50,
+      "errorScore": 1
+    }
+  ]
+}
