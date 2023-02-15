@@ -12,20 +12,23 @@ export default async function handler(
   res: NextApiResponse
 ) {
   let trains: TrainTimes[] = [];
-
-  const response = await fetch(
-    "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
-  );
-  const htmlString = await response.text();
-  const $ = cheerio.load(htmlString);
-  $("objStationData")
-    .get()
-    .map((train) => {
-      trains.push({
-        destination: $(train).find("Destination").text(),
-        departs: $(train).find("Exparrival").text(),
+  try {
+    const response = await fetch(
+      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
+    );
+    const htmlString = await response.text();
+    const $ = cheerio.load(htmlString);
+    $("objStationData")
+      .get()
+      .map((train) => {
+        trains.push({
+          destination: $(train).find("Destination").text(),
+          departs: $(train).find("Exparrival").text(),
+        });
       });
-    });
-  res.statusCode = 200;
-  return res.json(trains);
+    res.statusCode = 200;
+    return res.json(trains);
+  } catch (err) {
+    console.log(err);
+  }
 }

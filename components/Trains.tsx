@@ -6,12 +6,11 @@ const Trains = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/api/followers", {
-      method: "post",
+    fetch("/api/hello", {
+      method: "get",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ TWuser: inputValue }),
     })
       .then((res) => res.json())
       .then((userData) => {
