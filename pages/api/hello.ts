@@ -14,27 +14,13 @@ export default async function handler(
   let trains: TrainTimes[] = [];
   try {
     const response = await fetch(
-      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries",
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36",
-        },
-      }
+      "https://www.irishrail.ie/en-ie/train-timetables/live-departure-train-times?key=skerries&REQ0JourneyStopskeyID=&HWAI%3DJS%21js=yes&HWAI%3DJS%21ajax=yes#live-departure-anchor"
     );
     const htmlString = await response.text();
-
     const $ = cheerio.load(htmlString);
-    $("objStationData")
-      .get()
-      .map((train) => {
-        trains.push({
-          destination: $(train).find("Destination").text(),
-          departs: $(train).find("Exparrival").text(),
-        });
-      });
+    const micky = $("#D811").text().replace(/\s/g, "");
     res.statusCode = 200;
-    return res.json(trains);
+    return res.json({ hello: micky });
   } catch (err) {
     console.log(err);
   }
