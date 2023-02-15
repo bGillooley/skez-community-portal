@@ -14,12 +14,16 @@ export default async function handler(
   let trains: TrainTimes[] = [];
   try {
     const response = await fetch(
-      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
+      "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries",
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36",
+        },
+      }
     );
     const htmlString = await response.text();
-    for (var pair of response.headers.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
-    }
+
     const $ = cheerio.load(htmlString);
     $("objStationData")
       .get()
