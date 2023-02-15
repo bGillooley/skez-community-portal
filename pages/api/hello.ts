@@ -1,19 +1,31 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+const cheerio = require("cheerio");
 
-import axios from "axios";
+interface TrainTimes {
+  destination: string;
+  departs: string;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const website = "https://www.tidetime.org/europe/ireland/skerries.htm";
-  let html;
-  try {
-    axios(website).then((response) => {
-      const html = response.data;
-      res.status(200).json(html);
+  let trains: TrainTimes[] = [];
+
+  const response = await fetch(
+    "https://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Skerries"
+  );
+  const htmlString = await response.text();
+  const $ = cheerio.load(htmlString);
+  $("objStationData")
+    .get()
+    .map((train) => {
+      trains.push({
+        destination: $(train).find("Destination").text(),
+        departs: $(train).find("Exparrival").text(),
+      });
     });
-  } catch (error) {
-    console.log(error, error.message);
-  }
+  res.statusCode = 200;
+  return res.json(trains);
 }
