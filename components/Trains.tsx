@@ -5,7 +5,7 @@ const Trains = () => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
 
-  useEffect(() => {
+  function getTrains() {
     fetch("/api/trains")
       .then((res) => res.json())
       .then((data) => {
@@ -14,7 +14,11 @@ const Trains = () => {
         setNorthBoundTrains(data.details1);
         setSouthBoundTrains(data.details2);
       });
-  }, []);
+  }
+
+  useEffect(() => {
+    getTrains();
+  }, [trainTimes, northBoundTrains, southBoundTrains]);
 
   return (
     <>
@@ -40,6 +44,7 @@ const Trains = () => {
           );
         })}
       </div>
+      <button onClick={getTrains}>Get Next Trains</button>
     </>
   );
 };
