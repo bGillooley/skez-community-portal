@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 const Trains = () => {
-  const [trainTimes, setTrainTimes] = useState({});
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
 
   function getTrains() {
-    fetch("/api/trains")
+    fetch("/api/trains", { cache: "no-cache" })
       .then((res) => res.json())
       .then((data) => {
         JSON.stringify(data);
-        setTrainTimes(data);
         setNorthBoundTrains(data.details1);
         setSouthBoundTrains(data.details2);
       });
@@ -19,28 +17,31 @@ const Trains = () => {
 
   useEffect(() => {
     getTrains();
-  }, [trainTimes, northBoundTrains, southBoundTrains]);
+  }, []);
 
   return (
     <>
-      <div>{trainTimes.heading1}</div>
+      <h2 className="text-2xl">Northbound</h2>
+
       <div>
         {northBoundTrains.map((e) => {
           return (
             <div key={e.eta}>
-              <div>{e.destination}</div>
-              <div>{e.duein}</div>
+              <div>
+                Destination: {e.destination} | Due in: {e.duein}
+              </div>
             </div>
           );
         })}
       </div>
-      <div>{trainTimes.heading2}</div>
+      <h2 className="text-2xl">Southbound</h2>
       <div>
         {southBoundTrains.map((e) => {
           return (
             <div key={e.eta}>
-              <div>{e.destination}</div>
-              <div>{e.duein}</div>
+              <div>
+                Destination: {e.destination} | Due in: {e.duein}
+              </div>
             </div>
           );
         })}

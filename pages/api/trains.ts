@@ -8,7 +8,8 @@ export default async function handler(
 ) {
   try {
     const response = await fetch(
-      "https://www.irishrail.ie/en-ie/train-timetables/live-departure-train-times?key=skerries&REQ0JourneyStopskeyID=&HWAI%3DJS%21js=yes&HWAI%3DJS%21ajax=yes#live-departure-anchor"
+      "https://www.irishrail.ie/en-ie/train-timetables/live-departure-train-times?key=skerries&REQ0JourneyStopskeyID=&HWAI%3DJS%21js=yes&HWAI%3DJS%21ajax=yes#live-departure-anchor",
+      { cache: "no-cache" }
     );
     const htmlString = await response.text();
     const $ = cheerio.load(htmlString);
