@@ -14,6 +14,7 @@ const Trains = () => {
         setNorthBoundTrains(data.details1);
         setSouthBoundTrains(data.details2);
       });
+    console.log("It ran..");
   }
 
   useEffect(() => {
