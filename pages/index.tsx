@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import React from "react";
+import React, { useState } from "react";
 import { GetStaticProps } from "next";
 import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
@@ -135,11 +135,8 @@ const Home: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <div>
-          <Tides />
-          <Trains />
-        </div>
       </main>
+      <Trains />
     </>
   );
 };

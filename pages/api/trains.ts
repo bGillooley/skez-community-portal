@@ -34,7 +34,6 @@ export default async function handler(
               duein: $(elm).find("td:nth-child(5)").text().trim(),
             };
             trains["details" + (i + 1)].push(obj);
-            console.log(obj);
           });
       });
 

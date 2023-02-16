@@ -1,42 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Trains = () => {
-  const [inputValue, setInputValue] = React.useState("");
-  const [userFollowers, setUserFollowers] = React.useState({});
+  const [trainTimes, setTrainTimes] = useState({});
+  const [northBoundTrains, setNorthBoundTrains] = useState([]);
+  const [southBoundTrains, setSouthBoundTrains] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("/api/hello", {
-      method: "get",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
+  useEffect(() => {
+    fetch("/api/trains")
       .then((res) => res.json())
-      .then((userData) => {
-        setUserFollowers(userData);
+      .then((data) => {
+        JSON.stringify(data);
+        setTrainTimes(data);
+        setNorthBoundTrains(data.details1);
+        setSouthBoundTrains(data.details2);
       });
-  };
+  }, []);
 
   return (
-    <main>
-      <h1>Look at this:</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Enter a Twitter username
-          <input
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-      {userFollowers.followerCount >= 0 ? (
-        <p>Followers: {userFollowers.followerCount}</p>
-      ) : (
-        <p>{userFollowers.error}</p>
-      )}
-    </main>
+    <>
+      <div>{trainTimes.heading1}</div>
+      <div>
+        {northBoundTrains.map((e) => {
+          return (
+            <div key={e.eta}>
+              <div>{e.destination}</div>
+              <div>{e.duein}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div>{trainTimes.heading2}</div>
+      <div>
+        {southBoundTrains.map((e) => {
+          return (
+            <div key={e.eta}>
+              <div>{e.destination}</div>
+              <div>{e.duein}</div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
