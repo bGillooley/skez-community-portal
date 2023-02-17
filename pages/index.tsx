@@ -14,7 +14,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const getStaticProps: GetStaticProps = async () => {
   let feed = await prisma.event.findMany({
     take: 6,
-    where: { published: true },
+    where: {
+      published: true,
+      eventDate: {
+        gte: new Date(),
+      },
+    },
     include: {
       author: {
         select: { name: true },
@@ -137,6 +142,8 @@ const Home: React.FC<Props> = (props) => {
         </div>
       </main>
       <Trains />
+      <br></br>
+      <Tides />
     </>
   );
 };
