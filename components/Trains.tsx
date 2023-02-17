@@ -4,7 +4,6 @@ const Trains = () => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
   const [loading, setLoading] = useState(false);
-
   function getTrains() {
     setLoading(true);
     fetch("/api/trains", { cache: "no-cache" })
@@ -27,27 +26,35 @@ const Trains = () => {
       <h2 className="text-2xl">Northbound</h2>
 
       <div>
-        {northBoundTrains.map((e) => {
-          return (
-            <div key={e.eta}>
-              <div>
-                Destination: {e.destination} | Departs: {e.eta}
+        {northBoundTrains === undefined && (
+          <p>No trains scheduled at this time</p>
+        )}
+        {northBoundTrains !== undefined &&
+          northBoundTrains.map((e) => {
+            return (
+              <div key={e.eta}>
+                <div>
+                  Destination: {e.destination} | Departs: {e.eta}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       <h2 className="text-2xl">Southbound</h2>
       <div>
-        {southBoundTrains.map((e) => {
-          return (
-            <div key={e.eta}>
-              <div>
-                Destination: {e.destination} | Departs: {e.eta}
+        {southBoundTrains === undefined && (
+          <p>No trains scheduled at this time</p>
+        )}
+        {southBoundTrains !== undefined &&
+          southBoundTrains.map((e) => {
+            return (
+              <div key={e.eta}>
+                <div>
+                  Destination: {e.destination} | Departs: {e.eta}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
       {loading && <div>Loading there...</div>}
       <div className="py-4">
