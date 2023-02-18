@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Trains = () => {
+const Trains = ({ setShowTrains }) => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -70,6 +70,12 @@ const Trains = () => {
           target="_blank"
         >
           View on Irish Rail
+        </a>
+        <a
+          className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-900 text-white hover:bg-red-700  ml-4"
+          onClick={() => setShowTrains(false)}
+        >
+          Hide Train Times
         </a>
       </div>
     </>
