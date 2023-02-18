@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { GetStaticProps } from "next";
 import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
+import Image from "next/image";
+import themeImg from "../public/static/skerries-windmill.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
@@ -59,9 +61,11 @@ const Home: React.FC<Props> = (props) => {
       <Header />
       <main className="bg-black relative">
         <div className="relative lg:absolute lg:h-screen lg:w-full">
-          <img
+          <Image
             className="z-0 absolute w-full h-full object-cover"
-            src="/static/skerries-windmill.jpg"
+            src={themeImg}
+            quality={50}
+            loading="eager"
             alt="Skerries Rules"
           />
           <div className="absolute z-10 rounded-md w-full h-full bg-gradient-to-b from-transparent to-black"></div>
