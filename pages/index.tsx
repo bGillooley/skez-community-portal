@@ -48,8 +48,8 @@ type Props = {
 };
 
 const Home: React.FC<Props> = (props) => {
-  const [showTrains, setShowTrains] = useState(false);
-  const [showTides, setShowTides] = useState(false);
+  const [showTrains, setShowTrains] = useState(true);
+  const [showTides, setShowTides] = useState(true);
   return (
     <>
       <Head>
