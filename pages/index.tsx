@@ -6,10 +6,17 @@ import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
 import Image from "next/image";
 import themeImg from "../public/static/skerries-windmill.jpg";
-import Trains from "components/Trains";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
-import Tides from "@/components/Tides";
 const inter = Inter({ subsets: ["latin"] });
+
+const Trains = dynamic(() => import("@/components/Trains"), {
+  loading: () => "Loading...",
+});
+
+const Tides = dynamic(() => import("@/components/Tides"), {
+  loading: () => "Loading...",
+});
 
 export const getStaticProps: GetStaticProps = async () => {
   let feed = await prisma.event.findMany({
@@ -41,6 +48,8 @@ type Props = {
 };
 
 const Home: React.FC<Props> = (props) => {
+  const [showTrains, setShowTrains] = useState(false);
+  const [showTides, setShowTides] = useState(false);
   return (
     <>
       <Head>
@@ -141,9 +150,21 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
       </main>
-      <Trains />
+      <button
+        className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
+        onClick={() => setShowTrains(true)}
+      >
+        Show Train Times
+      </button>
+      {showTrains && <Trains />}
+      <button
+        className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
+        onClick={() => setShowTides(true)}
+      >
+        Show Tide Times
+      </button>
       <br></br>
-      <Tides />
+      {showTides && <Tides />}
     </>
   );
 };
