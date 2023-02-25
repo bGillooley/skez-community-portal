@@ -26,19 +26,18 @@ export type EventProps = {
 const Post: React.FC<{ event: EventProps }> = ({ event }) => {
   const encodedAddress = encodeURIComponent(event.address);
   const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=18&markers=color:blue|${encodedAddress}&size=400x400&key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAP_KEY}`;
-  const [selectedId, setSelectedId] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
-      <motion.div
-        layoutId={event.id}
-        onClick={() => setSelectedId(event.id)}
+      <div
+        onClick={() => setModalVisible(true)}
         key={event.id}
-        className="flex relative justify-between bg-white drop-shadow border border-gray-100 rounded-md py-2 px-3"
+        className="flex relative justify-between bg-white drop-shadow border border-gray-100 rounded-md py-2 px-3 cursor-pointer"
       >
         <div className="flex-grow">
-          <motion.div className="text-base text-black pb-4 truncate overflow-hidden">
+          <div className="text-base text-black pb-4 truncate overflow-hidden">
             {event.title}
-          </motion.div>
+          </div>
           <div className="text-sm text-slate-500">{event.venue}</div>
         </div>
         <div>
@@ -47,18 +46,23 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
           </div>
           <div className="text-sm text-slate-500 text-right">6.30pm</div>
         </div>
-      </motion.div>
-      <AnimatePresence type="crossfade">
-        {selectedId && (
+      </div>
+      <AnimatePresence>
+        {modalVisible && (
           <div className="fixed left-0 top-0 w-full h-full z-50">
-            <div
+            <motion.div
               className="fixed w-full h-full bg-black opacity-50 z-10"
-              onClick={() => setSelectedId(null)}
-            ></div>
+              onClick={() => setModalVisible(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.75 }}
+              exit={{ opacity: 0 }}
+            ></motion.div>
             <div className="flex w-screen h-screen items-center justify-center">
               <motion.div
-                layoutId={selectedId}
                 className="bg-white  h-auto z-50 px-2 py-2 lg:px-10 lg:py-10"
+                initial={{ scale: 0.75, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ opacity: 0 }}
               >
                 <h2>{event.title}</h2>
                 <p>Venue: {event.venue}</p>
@@ -85,7 +89,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 </form>
                 <button
                   className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => setSelectedId(null)}
+                  onClick={() => setModalVisible(false)}
                 >
                   Close
                 </button>

@@ -8,6 +8,7 @@ import Image from "next/image";
 import themeImg from "../public/static/skerries-windmill.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
+import { MdWaves, MdTrain } from "react-icons/md";
 const inter = Inter({ subsets: ["latin"] });
 
 const Trains = dynamic(() => import("@/components/Trains"), {
@@ -74,7 +75,7 @@ const Home: React.FC<Props> = (props) => {
               Skerries
             </h1>
             <p className="text-slate-100 text-2xl text-center">
-              A real nice place to be
+              a local app. for local people
             </p>
             <img
               className="py-4 mx-auto"
@@ -94,7 +95,9 @@ const Home: React.FC<Props> = (props) => {
           <div className="relative flex w-full z-20 px-4 pb-6 xl:px-24 xl:pb-12 2xl:px-44 2xl:pb-24">
             <div className="hidden lg:flex w-1/3 flex-col place-content-end pr-10">
               <h1 className="text-6xl 2xl:text-8xl text-slate-100">Skerries</h1>
-              <p className="text-slate-100 text-3xl">A real nice place to be</p>
+              <p className="text-slate-100 text-3xl">
+                a local app. for local people
+              </p>
               <img
                 className="py-4"
                 src="/static/wiggle-wave.png"
@@ -128,20 +131,36 @@ const Home: React.FC<Props> = (props) => {
                       className="absolute z-0 rounded-md w-full h-full object-cover"
                       alt="Historical Photo of Skerries"
                     />
-                    <div className="absolute z-10 rounded-md w-full h-full bg-gradient-to-b from-transparent to-black"></div>
-                    <div className="relative z-20 pt-12 px-3 py-2">
-                      <h3 className="text-2xl text-slate-100">
-                        Skerries History
-                      </h3>
-                      <p className="text-base text-slate-100">
-                        Lets learn all about old-school Skez. When things were
-                        supposedly wonderful accoring to old people.
-                      </p>
+                  </div>
+                </div>
+                <div className="row-span-1 col-start-3 row-start-4">
+                  <div
+                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-slate-500"
+                    onClick={() => setShowTrains(true)}
+                  >
+                    <div className="flex justify-center text-4xl text-white">
+                      <MdTrain />
+                    </div>
+                    <div className="flex justify-center text-white">
+                      TRAIN TIMES
                     </div>
                   </div>
                 </div>
-                <div className="row-span-3 col-start-3 row-start-4">
-                  <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500"></div>
+                <div className="row-span-1 col-start-3 row-start-5">
+                  <div
+                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-slate-500"
+                    onClick={() => setShowTides(true)}
+                  >
+                    <div className="flex justify-center text-4xl text-white">
+                      <MdWaves />
+                    </div>
+                    <div className="flex justify-center text-white">
+                      TIDE TIMES
+                    </div>
+                  </div>
+                </div>
+                <div className="row-span-1 col-start-3 row-start-6">
+                  <div className="relative cursor-pointer rounded-md w-full h-full bg-slate-500"></div>
                 </div>
                 <div className="row-span-3 col-start-4   row-start-4">
                   <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500"></div>
@@ -151,21 +170,13 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
       </main>
-      <button
-        className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
-        onClick={() => setShowTrains(true)}
-      >
-        Show Train Times
-      </button>
-      {showTrains && <Trains setShowTrains={setShowTrains} />}
-      <button
-        className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
-        onClick={() => setShowTides(true)}
-      >
-        Show Tide Times
-      </button>
+
+      {showTrains && (
+        <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
+      )}
+
       <br></br>
-      {showTides && <Tides setShowTides={setShowTides} />}
+      {showTides && <Tides showTides={showTides} setShowTides={setShowTides} />}
     </>
   );
 };
