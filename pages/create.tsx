@@ -14,7 +14,7 @@ const Draft: React.FC = () => {
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title, content, eventDate };
+      const body = { title, content, eventDate, eventTime };
       await fetch("/api/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -63,7 +63,7 @@ const Draft: React.FC = () => {
             onChange={(e) => setEventTime(e.target.value)}
             placeholder="Event Time"
             type="text"
-            value={title}
+            value={eventTime}
           />
           <input disabled={!content || !title} type="submit" value="Create" />
           <a className="back" href="#" onClick={() => Router.push("/")}>

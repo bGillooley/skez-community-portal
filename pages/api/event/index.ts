@@ -3,7 +3,7 @@ import prisma from "../../../lib/prisma";
 
 // POST /api/event
 export default async function handle(req, res) {
-  const { title, content, venue, address, eventDate } = req.body;
+  const { title, content, venue, address, eventTime, eventDate } = req.body;
 
   const session = await getSession({ req });
   const result = await prisma.event.create({
@@ -12,6 +12,7 @@ export default async function handle(req, res) {
       content: content,
       venue: venue,
       address: address,
+      eventTime: eventTime,
       eventDate: eventDate,
       author: { connect: { email: session?.user?.email } },
     },

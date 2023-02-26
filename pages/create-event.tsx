@@ -11,11 +11,12 @@ const Draft: React.FC = () => {
   const [content, setContent] = useState("");
   const [venue, setVenue] = useState("");
   const [address, setAddress] = useState("");
+  const [eventTime, setEventTime] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title, content, venue, address, eventDate };
+      const body = { title, content, venue, address, eventDate, eventTime };
       await fetch("/api/event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -48,14 +49,12 @@ const Draft: React.FC = () => {
             value={title}
           />
           <input
-            autoFocus
             onChange={(e) => setVenue(e.target.value)}
             placeholder="Venue"
             type="text"
             value={venue}
           />
           <input
-            autoFocus
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Address"
             type="text"
@@ -68,7 +67,14 @@ const Draft: React.FC = () => {
             rows={8}
             value={content}
           />
+          <input
+            onChange={(e) => setEventTime(e.target.value)}
+            placeholder="Event Time"
+            type="text"
+            value={eventTime}
+          />
           <DatePicker
+            placeholder="Event Date"
             selected={eventDate}
             onChange={(date: Date) => setEventDate(date)}
           />
