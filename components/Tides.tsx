@@ -4,13 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 const Tides = ({ showTides, setShowTides }) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
   const [tideData, setTideData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function getTides() {
+    setLoading(true);
     fetch("/api/tides", { cache: "no-cache" })
       .then((res) => res.json())
       .then((data) => {
         const tideStuff = JSON.parse(JSON.stringify(data));
         setTideData(tideStuff);
+        setLoading(false);
       });
     console.log("It ran..");
   }
@@ -28,6 +31,25 @@ const Tides = ({ showTides, setShowTides }) => {
     dayTomorrow.setDate(dayToday.getDate() + 1);
     const dayAfterTomorrow = new Date();
     dayAfterTomorrow.setDate(dayToday.getDate() + 2);
+
+    if (loading) {
+      return (
+        <AnimatePresence>
+          <div className="fixed left-0 top-0 w-full h-full z-50">
+            <motion.div
+              className="fixed w-full h-full bg-black opacity-50 z-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.75 }}
+              exit={{ opacity: 0 }}
+            ></motion.div>
+            <div className="w-full h-full  text-white flex justify-center items-center">
+              <div className="relative z-20 text-3xl">Loading...</div>
+            </div>
+          </div>
+        </AnimatePresence>
+      );
+    }
+
     return (
       <AnimatePresence>
         <div className="fixed left-0 top-0 w-full h-full z-50">
@@ -40,7 +62,7 @@ const Tides = ({ showTides, setShowTides }) => {
           ></motion.div>
           <div className="flex w-screen h-screen items-center justify-center">
             <motion.div
-              className="bg-white  h-auto z-50 px-2 py-2 lg:px-10 lg:py-10"
+              className="bg-white  h-auto z-50 m-4 px-2 py-2"
               initial={{ scale: 0.75, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}

@@ -6,15 +6,16 @@ const Trains = ({ showTrains, setShowTrains }) => {
   const [loading, setLoading] = useState(false);
   function getTrains() {
     setLoading(true);
+    console.log("is loading");
     fetch("/api/trains", { cache: "no-cache" })
       .then((res) => res.json())
       .then((data) => {
         JSON.stringify(data);
         setNorthBoundTrains(data.details1);
         setSouthBoundTrains(data.details2);
+        setLoading(false);
+        console.log("finished loading");
       });
-    setLoading(false);
-    console.log("It ran..");
   }
 
   useEffect(() => {
@@ -22,7 +23,21 @@ const Trains = ({ showTrains, setShowTrains }) => {
   }, []);
 
   if (loading) {
-    return <div>Is loading there....</div>;
+    return (
+      <AnimatePresence>
+        <div className="fixed left-0 top-0 w-full h-full z-50">
+          <motion.div
+            className="fixed w-full h-full bg-black opacity-50 z-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.75 }}
+            exit={{ opacity: 0 }}
+          ></motion.div>
+          <div className="w-full h-full  text-white flex justify-center items-center">
+            <div className="relative z-20 text-3xl">Loading...</div>
+          </div>
+        </div>
+      </AnimatePresence>
+    );
   }
 
   return (
@@ -38,43 +53,46 @@ const Trains = ({ showTrains, setShowTrains }) => {
           ></motion.div>
           <div className="flex w-screen h-screen items-center justify-center">
             <motion.div
-              className="bg-white  h-auto z-50 px-2 py-2 lg:px-10 lg:py-10"
+              className="bg-white w-96 h-auto z-50 m-4 px-2 py-2"
               initial={{ scale: 0.75, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <h2 className="text-2xl">Northbound</h2>
+              <div>
+                <h2 className="text-2xl">Northbound</h2>
 
-              <div>
-                {northBoundTrains === undefined && (
-                  <p>No trains scheduled at this time</p>
-                )}
-                {northBoundTrains !== undefined &&
-                  northBoundTrains.map((e) => {
-                    return (
-                      <div key={e.eta}>
-                        <div>
-                          Destination: {e.destination} | Departs: {e.eta}
+                <div>
+                  {northBoundTrains === undefined && (
+                    <p>No trains scheduled at this time</p>
+                  )}
+                  {northBoundTrains !== undefined &&
+                    northBoundTrains.map((e) => {
+                      return (
+                        <div key={e.eta}>
+                          <div>
+                            Destination: {e.destination} | Departs: {e.eta}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-              </div>
-              <h2 className="text-2xl">Southbound</h2>
-              <div>
-                {southBoundTrains === undefined && (
-                  <p>No trains scheduled at this time</p>
-                )}
-                {southBoundTrains !== undefined &&
-                  southBoundTrains.map((e) => {
-                    return (
-                      <div key={e.eta}>
-                        <div>
-                          Destination: {e.destination} | Departs: {e.eta}
+                      );
+                    })}
+                </div>
+                <h2 className="text-2xl">Southbound</h2>
+
+                <div>
+                  {southBoundTrains === undefined && (
+                    <p>No trains scheduled at this time</p>
+                  )}
+                  {southBoundTrains !== undefined &&
+                    southBoundTrains.map((e) => {
+                      return (
+                        <div key={e.eta}>
+                          <div>
+                            Destination: {e.destination} | Departs: {e.eta}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                </div>
               </div>
 
               <div className="py-4">

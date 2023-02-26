@@ -29,6 +29,7 @@ model Event {
   content   String?
   address   String?
   eventDate DateTime
+  eventTime String?
   venue     String
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])

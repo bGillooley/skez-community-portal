@@ -20,6 +20,7 @@ export type EventProps = {
   address: string;
   venue: string;
   eventDate: string;
+  eventTime: string;
   published: boolean;
 };
 
@@ -44,7 +45,9 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
           <div className="text-base text-slate-500 pb-4 text-right">
             {formatDate(event.eventDate)}
           </div>
-          <div className="text-sm text-slate-500 text-right">6.30pm</div>
+          <div className="text-sm text-slate-500 text-right">
+            {event.eventTime}
+          </div>
         </div>
       </div>
       <AnimatePresence>
@@ -59,14 +62,16 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
             ></motion.div>
             <div className="flex w-screen h-screen items-center justify-center">
               <motion.div
-                className="bg-white  h-auto z-50 px-2 py-2 lg:px-10 lg:py-10"
+                className="bg-white  h-auto z-50 m-4 px-2 py-2"
                 initial={{ scale: 0.75, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
                 <h2>{event.title}</h2>
                 <p>Venue: {event.venue}</p>
-                <p>Date: {formatDate(event.eventDate)} | Time: 20:45pm</p>
+                <p>
+                  Date: {formatDate(event.eventDate)} | Time: {event.eventTime}
+                </p>
                 <Image
                   src={googleStaticMapURL}
                   alt="Google Map"

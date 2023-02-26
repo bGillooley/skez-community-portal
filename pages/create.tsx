@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [eventTime, setEventTime] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -52,9 +53,17 @@ const Draft: React.FC = () => {
             rows={8}
             value={content}
           />
+
           <DatePicker
+            placeholder="Event Date"
             selected={eventDate}
             onChange={(date: Date) => setEventDate(date)}
+          />
+          <input
+            onChange={(e) => setEventTime(e.target.value)}
+            placeholder="Event Time"
+            type="text"
+            value={title}
           />
           <input disabled={!content || !title} type="submit" value="Create" />
           <a className="back" href="#" onClick={() => Router.push("/")}>
