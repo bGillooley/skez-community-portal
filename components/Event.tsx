@@ -62,7 +62,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
       <div
         onClick={() => setModalVisible(true)}
         key={event.id}
-        className="flex relative justify-between bg-white drop-shadow border border-gray-100 rounded-md py-2 px-3 cursor-pointer"
+        className="flex relative justify-between bg-white hover:bg-slate-100 drop-shadow border border-gray-100 rounded-md py-2 px-3 cursor-pointer"
       >
         <div className="flex-grow">
           <div className="text-base text-black pb-4 truncate overflow-hidden">

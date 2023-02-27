@@ -125,17 +125,17 @@ const Home: React.FC<Props> = (props) => {
                   </div>
                 ))}
                 <div className="relative col-span-2 row-span-3 col-start-3 row-start-1">
-                  <div className="flex flex-col place-content-end relative rounded-md w-full h-full mb-2 lg:mb-0 bg-slate-500">
+                  <div className="flex flex-col place-content-end relative rounded-md w-full h-full mb-2 lg:mb-0 bg-sky-700 hover:bg-sky-800">
                     <img
-                      src="/static/old-skez.jpg"
+                      src="/static/skez-drone.jpg"
                       className="absolute z-0 rounded-md w-full h-full object-cover"
-                      alt="Historical Photo of Skerries"
+                      alt="Skez Drone"
                     />
                   </div>
                 </div>
                 <div className="row-span-1 col-start-3 row-start-4">
                   <div
-                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-slate-500"
+                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
                     onClick={() => setShowTrains(true)}
                   >
                     <div className="flex justify-center text-4xl text-white">
@@ -148,7 +148,7 @@ const Home: React.FC<Props> = (props) => {
                 </div>
                 <div className="row-span-1 col-start-3 row-start-5">
                   <div
-                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-slate-500"
+                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
                     onClick={() => setShowTides(true)}
                   >
                     <div className="flex justify-center text-4xl text-white">
@@ -160,10 +160,16 @@ const Home: React.FC<Props> = (props) => {
                   </div>
                 </div>
                 <div className="row-span-1 col-start-3 row-start-6">
-                  <div className="relative cursor-pointer rounded-md w-full h-full bg-slate-500"></div>
+                  <div className="relative cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"></div>
                 </div>
                 <div className="row-span-3 col-start-4   row-start-4">
-                  <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500"></div>
+                  <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500">
+                    <img
+                      src="/static/skez-night.jpg"
+                      className="absolute z-0 rounded-md w-full h-full object-cover"
+                      alt="Skez Drone"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
