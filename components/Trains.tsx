@@ -53,49 +53,79 @@ const Trains = ({ showTrains, setShowTrains }) => {
           ></motion.div>
           <div className="flex w-screen h-screen items-center justify-center">
             <motion.div
-              className="bg-white w-96 h-auto z-50 m-4 px-2 py-2"
+              className="mx-2 md:w-[480px] h-auto z-50"
               initial={{ scale: 0.75, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div>
-                <h2 className="text-2xl">Northbound</h2>
+              <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
+                Next Trains from Skerries Station
+              </div>
+              <div className="bg-white">
+                <div className="p-4">
+                  <h2 className="text-2xl text-center">Northbound</h2>
+                  <table className="w-full mb-4">
+                    <thead>
+                      <tr>
+                        <th className="text-left p-1">Destination</th>
+                        <th className="text-right p-1">Departure Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {northBoundTrains === undefined && (
+                        <tr>
+                          <td>No trains scheduled at this time</td>
+                        </tr>
+                      )}
 
-                <div>
-                  {northBoundTrains === undefined && (
-                    <p>No trains scheduled at this time</p>
-                  )}
-                  {northBoundTrains !== undefined &&
-                    northBoundTrains.map((e) => {
-                      return (
-                        <div key={e.eta}>
-                          <div>
-                            Destination: {e.destination} | Departs: {e.eta}
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-                <h2 className="text-2xl">Southbound</h2>
+                      {northBoundTrains !== undefined &&
+                        northBoundTrains.map((e) => {
+                          return (
+                            <tr
+                              className="odd:bg-slate-100 even:bg-white"
+                              key={e.eta}
+                            >
+                              <td className="text-left p-1">{e.destination}</td>
+                              <td className="text-right p-1">{e.eta}</td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
 
-                <div>
-                  {southBoundTrains === undefined && (
-                    <p>No trains scheduled at this time</p>
-                  )}
-                  {southBoundTrains !== undefined &&
-                    southBoundTrains.map((e) => {
-                      return (
-                        <div key={e.eta}>
-                          <div>
-                            Destination: {e.destination} | Departs: {e.eta}
-                          </div>
-                        </div>
-                      );
-                    })}
+                  <h2 className="text-2xl text-center">Southbound</h2>
+
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="text-left p-1">Destination</th>
+                        <th className="text-right p-1">Departure Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {southBoundTrains === undefined && (
+                        <tr>
+                          <td>No trains scheduled at this time</td>
+                        </tr>
+                      )}
+
+                      {southBoundTrains !== undefined &&
+                        southBoundTrains.map((e) => {
+                          return (
+                            <tr
+                              className="odd:bg-slate-100 even:bg-white"
+                              key={e.eta}
+                            >
+                              <td className="text-left p-1">{e.destination}</td>
+                              <td className="text-right p-1">{e.eta}</td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
-
-              <div className="py-4">
+              <div className="py-4 text-center bg-slate-50 rounded-b-lg">
                 <button
                   className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
                   onClick={getTrains}
@@ -110,7 +140,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   View on Irish Rail
                 </a>
                 <a
-                  className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-900 text-white hover:bg-red-700  ml-4"
+                  className="inline-flex justify-center cursor-pointer rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-900 text-white hover:bg-red-700  ml-4"
                   onClick={() => setShowTrains(false)}
                 >
                   DISMISS

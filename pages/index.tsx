@@ -170,12 +170,9 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
       </main>
-
       {showTrains && (
         <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
       )}
-
-      <br></br>
       {showTides && <Tides showTides={showTides} setShowTides={setShowTides} />}
     </>
   );

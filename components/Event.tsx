@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import "add-to-calendar-button";
 const formatDate = (dateString) => {
   const timeformat = {
     weekday: "short",
@@ -11,6 +12,26 @@ const formatDate = (dateString) => {
 
   const options = { day: "numeric", month: "short", weekday: "short" };
   return new Date(dateString).toLocaleDateString("en-GB", timeformat);
+};
+
+const formatDateLong = (dateString) => {
+  const timeformat = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    hour12: false,
+  } as const;
+
+  const options = { day: "numeric", month: "short", weekday: "short" };
+  return new Date(dateString).toLocaleDateString("en-GB", timeformat);
+};
+
+const calendarDate = (dateStringInput) => {
+  const dateString = new Date(dateStringInput);
+  const year = dateString.toLocaleString("default", { year: "numeric" });
+  const month = dateString.toLocaleString("default", { month: "2-digit" });
+  const day = dateString.toLocaleString("default", { day: "2-digit" });
+  return `${year}-${month}-${day}`;
 };
 
 export type EventProps = {
@@ -24,9 +45,17 @@ export type EventProps = {
   published: boolean;
 };
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      ["add-to-calendar-button"]: CustomElement<AddToCalendarButton>;
+    }
+  }
+}
+
 const Post: React.FC<{ event: EventProps }> = ({ event }) => {
   const encodedAddress = encodeURIComponent(event.address);
-  const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=18&markers=color:blue|${encodedAddress}&size=400x400&key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAP_KEY}`;
+  const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=16&markers=color:red|${encodedAddress}&size=400x400&key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAP_KEY}`;
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -62,42 +91,80 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
             ></motion.div>
             <div className="flex w-screen h-screen items-center justify-center">
               <motion.div
-                className="bg-white  h-auto z-50 m-4 px-2 py-2"
+                className="relative bg-white md:w-[680px]  h-auto z-50 m-2 rounded-lg"
                 initial={{ scale: 0.75, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                <h2>{event.title}</h2>
-                <p>Venue: {event.venue}</p>
-                <p>
-                  Date: {formatDate(event.eventDate)} | Time: {event.eventTime}
-                </p>
-                <Image
-                  src={googleStaticMapURL}
-                  alt="Google Map"
-                  width={350}
-                  height={350}
-                />
+                <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
+                  <h2>{event.title}</h2>
+                </div>
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:flex md:flex-1 md:justify-center md:items-center">
+                    <div className="md:px-4">
+                      <div className="text-center md:text-left pt-1 text-lg pl-2">
+                        {event.venue}
+                      </div>
+                      <div className="text-center md:text-left text-xs px-2">
+                        {event.address}
+                      </div>
+                      <div className="text-center md:text-left text-md pt-2 pl-2">
+                        {formatDateLong(event.eventDate)} | {event.eventTime}
+                      </div>
+                      <div className="mt-4 ml-2 w-[50px] h-[4px] bg-sky-900"></div>
+                      <div className="text-md pl-2 pt-1">{event.content}</div>
+                      <add-to-calendar-button
+                        name={event.title}
+                        description={event.content}
+                        startDate={calendarDate(event.eventDate)}
+                        startTime={event.eventTime}
+                        endTime={event.eventTime}
+                        timeZone="Europe/Dublin"
+                        location={event.address}
+                        options="'Apple','Google','iCal','Outlook.com'"
+                        buttonStyle="text"
+                      ></add-to-calendar-button>
+                    </div>
+                  </div>
 
-                <form
-                  action="https://maps.google.com/maps"
-                  method="get"
-                  target="_blank"
-                >
-                  <input type="hidden" name="Your location" />
-                  <input type="hidden" name="daddr" value={event.address} />
-                  <input
-                    className="inline-flex mb-2 w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                    type="submit"
-                    value="Get directions"
-                  />
-                </form>
-                <button
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => setModalVisible(false)}
-                >
-                  Close
-                </button>
+                  <div className="md:flex-1">
+                    <div className="relative">
+                      <Image
+                        className="w-[100%]"
+                        src={googleStaticMapURL}
+                        alt="Google Map"
+                        width={350}
+                        height={350}
+                      />
+                      <form
+                        className="absolute bottom-0 right-4"
+                        action="https://maps.google.com/maps"
+                        method="get"
+                        target="_blank"
+                      >
+                        <input type="hidden" name="Your location" />
+                        <input
+                          type="hidden"
+                          name="daddr"
+                          value={event.address}
+                        />
+                        <input
+                          className="inline-flex mb-2 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                          type="submit"
+                          value="View Map / Get directions"
+                        />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 bg-slate-50 text-center rounded-b-lg">
+                  <button
+                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    onClick={() => setModalVisible(false)}
+                  >
+                    DISMISS
+                  </button>
+                </div>
               </motion.div>
             </div>
           </div>

@@ -62,54 +62,60 @@ const Tides = ({ showTides, setShowTides }) => {
           ></motion.div>
           <div className="flex w-screen h-screen items-center justify-center">
             <motion.div
-              className="bg-white  h-auto z-50 m-4 px-2 py-2"
+              className="mx-2 md:w-[480px] h-auto z-50"
               initial={{ scale: 0.75, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div>
-                <h2 className="text-2xl">Skez Tide Times</h2>
-                <table>
-                  <thead>
-                    <tr>
-                      <th className="text-left uppercase text-sm">
-                        {dayToday.toLocaleString("en-En", {
-                          weekday: "long",
-                        })}
-                      </th>
-                      <th className="text-left uppercase text-sm">
-                        {dayTomorrow.toLocaleString("en-En", {
-                          weekday: "long",
-                        })}
-                      </th>
-                      <th className="text-left uppercase text-sm">
-                        {dayAfterTomorrow.toLocaleString("en-En", {
-                          weekday: "long",
-                        })}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      {tideData.slice(0, 3).map((elm, i) => {
-                        return (
-                          <td key={i} className="align-top pr-4 text-sm">
-                            <div
-                              dangerouslySetInnerHTML={{ __html: elm.tides }}
-                            />
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
+                Skerries Tide Times
               </div>
-              <button
-                className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                onClick={() => setShowTides(false)}
-              >
-                DISMISS
-              </button>
+              <div className="bg-white">
+                <div className="p-4">
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="text-left uppercase">
+                          {dayToday.toLocaleString("en-En", {
+                            weekday: "long",
+                          })}
+                        </th>
+                        <th className="text-left uppercase">
+                          {dayTomorrow.toLocaleString("en-En", {
+                            weekday: "long",
+                          })}
+                        </th>
+                        <th className="text-left uppercase">
+                          {dayAfterTomorrow.toLocaleString("en-En", {
+                            weekday: "long",
+                          })}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        {tideData.slice(0, 3).map((elm, i) => {
+                          return (
+                            <td key={i} className="align-top ">
+                              <div
+                                dangerouslySetInnerHTML={{ __html: elm.tides }}
+                              />
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div className="py-4 text-center bg-slate-50 rounded-b-lg">
+                <button
+                  className="inline-flex cursor-pointer w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  onClick={() => setShowTides(false)}
+                >
+                  DISMISS
+                </button>
+              </div>
             </motion.div>
           </div>
         </div>
