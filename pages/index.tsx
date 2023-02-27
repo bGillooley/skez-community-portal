@@ -124,7 +124,7 @@ const Home: React.FC<Props> = (props) => {
                     <Event event={event} />
                   </div>
                 ))}
-                <div className="relative col-span-2 row-span-3 col-start-3 row-start-1">
+                <div className="relative hidden lg:block col-span-2 row-span-3 col-start-3 row-start-1">
                   <div className="flex flex-col place-content-end relative rounded-md w-full h-full mb-2 lg:mb-0 bg-sky-700 hover:bg-sky-800">
                     <img
                       src="/static/skez-drone.jpg"
@@ -133,9 +133,9 @@ const Home: React.FC<Props> = (props) => {
                     />
                   </div>
                 </div>
-                <div className="row-span-1 col-start-3 row-start-4">
+                <div className="mb-2 lg:mb-0 row-span-1 col-start-3 row-start-4">
                   <div
-                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
+                    className="relative flex py-2 flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
                     onClick={() => setShowTrains(true)}
                   >
                     <div className="flex justify-center text-4xl text-white">
@@ -146,9 +146,9 @@ const Home: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="row-span-1 col-start-3 row-start-5">
+                <div className="mb-2 lg:mb-0 row-span-1 col-start-3 row-start-5">
                   <div
-                    className="relative flex flex-col justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
+                    className="relative flex flex-col py-2 justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
                     onClick={() => setShowTides(true)}
                   >
                     <div className="flex justify-center text-4xl text-white">
@@ -159,10 +159,10 @@ const Home: React.FC<Props> = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="row-span-1 col-start-3 row-start-6">
+                <div className="mb-2 lg:mb-0 row-span-1 col-start-3 row-start-6">
                   <div className="relative cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"></div>
                 </div>
-                <div className="row-span-3 col-start-4   row-start-4">
+                <div className="row-span-3 col-start-4 hidden lg:block  row-start-4">
                   <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500">
                     <img
                       src="/static/skez-night.jpg"
