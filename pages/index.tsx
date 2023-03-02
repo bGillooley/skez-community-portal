@@ -12,11 +12,11 @@ import { MdWaves, MdTrain } from "react-icons/md";
 const inter = Inter({ subsets: ["latin"] });
 
 const Trains = dynamic(() => import("@/components/Trains"), {
-  loading: () => "Loading...",
+  loading: () => <div className="fixed invisible">Loading Train Times...</div>,
 });
 
 const Tides = dynamic(() => import("@/components/Tides"), {
-  loading: () => "Loading...",
+  loading: () => <div className="fixed invisible">Loading Tide Times...</div>,
 });
 
 export const getStaticProps: GetStaticProps = async () => {

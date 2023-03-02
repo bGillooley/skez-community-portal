@@ -27,14 +27,14 @@ const Trains = ({ showTrains, setShowTrains }) => {
   if (loading) {
     return (
       <AnimatePresence>
-        <div className="fixed left-0 top-0 w-full h-full z-50">
+        <div className="absolute left-0 top-0 w-full h-full z-50">
           <motion.div
-            className="fixed w-full h-full bg-black opacity-50 z-10"
+            className="absolute w-full h-full bg-black opacity-50 z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
           ></motion.div>
-          <div className="w-full h-full  text-white flex justify-center items-center">
+          <div className="absolute w-full h-full  text-white flex justify-center items-center">
             <div className="relative z-20 text-3xl">Loading...</div>
           </div>
         </div>

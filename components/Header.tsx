@@ -152,21 +152,25 @@ const Header: React.FC = () => {
     );
   }
 
-  return (
-    <div className="w-full top-0 fixed z-40">
-      <nav>
-        {left}
-        {right}
-        <style jsx>{`
-          nav {
-            display: flex;
-            padding: 2rem;
-            align-items: center;
-          }
-        `}</style>
-      </nav>
-    </div>
-  );
+  if (session) {
+    return (
+      <div className="w-full top-0 fixed z-40">
+        <nav>
+          {left}
+          {right}
+          <style jsx>{`
+            nav {
+              display: flex;
+              padding: 2rem;
+              align-items: center;
+            }
+          `}</style>
+        </nav>
+      </div>
+    );
+  }
+
+  return <div className="fixed hidden">I am the invisible header for now</div>;
 };
 
 export default Header;
