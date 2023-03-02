@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MdArrowForwardIos } from "react-icons/md";
 
 const Tides = ({ showTides, setShowTides }) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
@@ -54,21 +55,37 @@ const Tides = ({ showTides, setShowTides }) => {
       <AnimatePresence>
         <div className="fixed left-0 top-0 w-full h-full z-50">
           <motion.div
-            className="fixed w-full h-full bg-black opacity-50 z-10"
+            className="absolute w-full h-full bg-black opacity-50 z-10"
             onClick={() => setShowTides(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
           ></motion.div>
-          <div className="flex w-screen h-screen items-center justify-center">
+          <div className="relative flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
             <motion.div
-              className="mx-2 md:w-[480px] h-auto z-50"
-              initial={{ scale: 0.75, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="w-full md:w-[520px] h-auto"
+              initial={{ y: 1500, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.25 }}
+              exit={{ y: 1500, opacity: 0 }}
             >
-              <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
-                Skerries Tide Times
+              <div className="w-full  pt-14 md:pt-4 md:p-4  md:bg-sky-700 text-white md:rounded-t-lg">
+                <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
+                  <div
+                    className="md:hidden flex flex-col place-content-center mb-4 pt-2 cursor-pointer z-50"
+                    onClick={() => setShowTides(false)}
+                  >
+                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-200">
+                      <MdArrowForwardIos />
+                    </div>
+                    <span className="text-slate-400 text-xs text-center">
+                      close
+                    </span>
+                  </div>
+                  <h2 className="text-center mx-2 text-xl md:text-xl">
+                    Skerries Tide Times
+                  </h2>
+                </div>
               </div>
               <div className="bg-white">
                 <div className="p-4">
@@ -108,9 +125,9 @@ const Tides = ({ showTides, setShowTides }) => {
                   </table>
                 </div>
               </div>
-              <div className="py-4 text-center bg-slate-50 rounded-b-lg">
+              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 rounded-b-lg">
                 <button
-                  className="inline-flex cursor-pointer w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  className="hidden md:inline-flex cursor-pointer rounded-md border border-transparent bg-red-800 px-4 py-2 text-white shadow-sm hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                   onClick={() => setShowTides(false)}
                 >
                   DISMISS

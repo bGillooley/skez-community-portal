@@ -153,7 +153,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <div className="w-full top-0 fixed z-50">
+    <div className="w-full top-0 fixed z-40">
       <nav>
         {left}
         {right}

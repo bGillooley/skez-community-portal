@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { MdArrowForwardIos } from "react-icons/md";
+
 import "add-to-calendar-button";
 const formatDate = (dateString) => {
   const timeformat = {
@@ -89,46 +91,67 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
               animate={{ opacity: 0.75 }}
               exit={{ opacity: 0 }}
             ></motion.div>
-            <div className="flex w-screen h-screen items-center justify-center">
+            <div className="flex md:w-screen md:h-screen md:items-center md:justify-center">
               <motion.div
-                className="relative bg-white md:w-[680px]  h-auto z-50 m-2 rounded-lg"
-                initial={{ scale: 0.75, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ opacity: 0 }}
+                className="relative w-full md:w-[680px] h-auto z-50 rounded-lg"
+                initial={{ y: 1500, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ ease: "easeOut", duration: 0.25 }}
+                exit={{ y: 1500, opacity: 0 }}
               >
-                <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
-                  <h2>{event.title}</h2>
+                <div className="w-full pt-14 md:pt-4 md:p-4  md:bg-sky-700 text-white md:rounded-t-lg">
+                  <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
+                    <div
+                      className="md:hidden flex flex-col place-content-center mb-4 pt-2 cursor-pointer z-50"
+                      onClick={() => setModalVisible(false)}
+                    >
+                      <div className="rotate-90 mx-auto origin-center text-3xl text-slate-200">
+                        <MdArrowForwardIos />
+                      </div>
+                      <span className="text-slate-400 text-xs text-center">
+                        close
+                      </span>
+                    </div>
+                    <h2 className="text-center mx-2 text-xl md:text-xl">
+                      {event.title}
+                    </h2>
+                    <div className="text-center  text-md text-slate-200">
+                      {formatDateLong(event.eventDate)} | {event.eventTime}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col  md:flex-row bg-white">
                   <div className="md:flex md:flex-1 md:justify-center md:items-center">
                     <div className="md:px-4">
-                      <div className="text-center md:text-left pt-1 text-lg pl-2">
+                      <div className="text-center md:text-left pt-4 md:pt-0 text-lg">
                         {event.venue}
                       </div>
-                      <div className="text-center md:text-left text-xs px-2">
+                      <div className="text-center md:text-left text-xs">
                         {event.address}
                       </div>
-                      <div className="text-center md:text-left text-md pt-2 pl-2">
-                        {formatDateLong(event.eventDate)} | {event.eventTime}
+
+                      <div className="mx-auto md:mx-0 mt-4 w-[50px] h-[4px] bg-sky-900"></div>
+                      <div className="text-center md:text-left text-md pt-1">
+                        {event.content}
                       </div>
-                      <div className="mt-4 ml-2 w-[50px] h-[4px] bg-sky-900"></div>
-                      <div className="text-md pl-2 pt-1">{event.content}</div>
-                      <add-to-calendar-button
-                        name={event.title}
-                        description={event.content}
-                        startDate={calendarDate(event.eventDate)}
-                        startTime={event.eventTime}
-                        endTime={event.eventTime}
-                        timeZone="Europe/Dublin"
-                        location={event.address}
-                        options="'Apple','Google','iCal','Outlook.com'"
-                        buttonStyle="text"
-                      ></add-to-calendar-button>
+                      <div className="flex place-content-center">
+                        <add-to-calendar-button
+                          name={event.title}
+                          description={event.content}
+                          startDate={calendarDate(event.eventDate)}
+                          startTime={event.eventTime}
+                          endTime={event.eventTime}
+                          timeZone="Europe/Dublin"
+                          location={event.address}
+                          options="'Apple','Google','iCal','Outlook.com'"
+                          buttonStyle="text"
+                        ></add-to-calendar-button>
+                      </div>
                     </div>
                   </div>
 
                   <div className="md:flex-1">
-                    <div className="relative">
+                    <div className="relative px-12 py-4 md:py-0 md:px-0">
                       <Image
                         className="w-[100%]"
                         src={googleStaticMapURL}
@@ -137,7 +160,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                         height={350}
                       />
                       <form
-                        className="absolute bottom-0 right-4"
+                        className="h-[400px] md:h-auto md:absolute bottom-0 right-4"
                         action="https://maps.google.com/maps"
                         method="get"
                         target="_blank"
@@ -149,7 +172,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                           value={event.address}
                         />
                         <input
-                          className="inline-flex mb-2 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                          className="inline-flex mb-2 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-4 py-2 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                           type="submit"
                           value="View Map / Get directions"
                         />
@@ -157,9 +180,9 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                     </div>
                   </div>
                 </div>
-                <div className="p-4 bg-slate-50 text-center rounded-b-lg">
+                <div className="p-4 bg-slate-50 text-center rounded-b-lg hidden md:block">
                   <button
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-800 px-4 py-2 text-white shadow-sm hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                     onClick={() => setModalVisible(false)}
                   >
                     DISMISS

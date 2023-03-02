@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MdArrowForwardIos } from "react-icons/md";
+
 const Trains = ({ showTrains, setShowTrains }) => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
@@ -45,21 +47,37 @@ const Trains = ({ showTrains, setShowTrains }) => {
       <AnimatePresence>
         <div className="fixed left-0 top-0 w-full h-full z-50">
           <motion.div
-            className="fixed w-full h-full bg-black opacity-50 z-10"
+            className="absolute w-full h-full bg-black opacity-50 z-10"
             onClick={() => setShowTrains(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
           ></motion.div>
-          <div className="flex w-screen h-screen items-center justify-center">
+          <div className="relative md:flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
             <motion.div
-              className="mx-2 md:w-[480px] h-auto z-50"
-              initial={{ scale: 0.75, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ opacity: 0 }}
+              className="w-full md:w-[520px] h-auto"
+              initial={{ y: 1500, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.25 }}
+              exit={{ y: 1500, opacity: 0 }}
             >
-              <div className="p-4 text-center text-xl bg-sky-700 text-white rounded-t-lg">
-                Next Trains from Skerries Station
+              <div className="w-full  pt-14 md:pt-4 md:p-4  md:bg-sky-700 text-white md:rounded-t-lg">
+                <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
+                  <div
+                    className="md:hidden flex flex-col place-content-center mb-4 pt-2 cursor-pointer z-50"
+                    onClick={() => setShowTrains(false)}
+                  >
+                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-200">
+                      <MdArrowForwardIos />
+                    </div>
+                    <span className="text-slate-400 text-xs text-center">
+                      close
+                    </span>
+                  </div>
+                  <h2 className="text-center mx-2 text-xl md:text-xl">
+                    Next Trains from Skerries Station
+                  </h2>
+                </div>
               </div>
               <div className="bg-white">
                 <div className="p-4">
@@ -125,22 +143,22 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   </table>
                 </div>
               </div>
-              <div className="py-4 text-center bg-slate-50 rounded-b-lg">
+              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 rounded-b-lg">
                 <button
-                  className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
+                  className="inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
                   onClick={getTrains}
                 >
-                  Update Info
+                  UPDATE INFO
                 </button>
                 <a
-                  className="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700  ml-4"
+                  className="inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700  ml-4"
                   href="https://www.irishrail.ie/en-ie/train-timetables/live-departure-train-times?key=skerries&REQ0JourneyStopskeyID=&HWAI%3DJS%21js=yes&HWAI%3DJS%21ajax=yes#live-departure-anchor"
                   target="_blank"
                 >
-                  View on Irish Rail
+                  VIEW ON IRISH RAIL
                 </a>
                 <a
-                  className="inline-flex justify-center cursor-pointer rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-900 text-white hover:bg-red-700  ml-4"
+                  className="hidden md:inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-800 text-white hover:bg-red-900  ml-4"
                   onClick={() => setShowTrains(false)}
                 >
                   DISMISS
