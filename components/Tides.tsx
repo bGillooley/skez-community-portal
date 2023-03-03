@@ -61,28 +61,28 @@ const Tides = ({ showTides, setShowTides }) => {
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
           ></motion.div>
-          <div className="relative flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
+          <div className="relative pointer-events-none flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
             <motion.div
-              className="w-full md:w-[520px] h-auto"
+              className="w-full md:w-[520px] h-auto pointer-events-auto"
               initial={{ y: 1500, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.25 }}
               exit={{ y: 1500, opacity: 0 }}
             >
-              <div className="w-full  pt-14 md:pt-4 md:p-4  md:bg-sky-700 text-white md:rounded-t-lg">
-                <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
+              <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
+                <div className="bg-sky-700 rounded-t-md pb-4">
                   <div
-                    className="md:hidden flex flex-col place-content-center mb-4 pt-2 cursor-pointer z-50"
+                    className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
                     onClick={() => setShowTides(false)}
                   >
-                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-200">
+                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
                       <MdArrowForwardIos />
                     </div>
                     <span className="text-slate-400 text-xs text-center">
                       close
                     </span>
                   </div>
-                  <h2 className="text-center mx-2 text-xl md:text-xl">
+                  <h2 className="text-center mx-2 text-xl md:text-2xl">
                     Skerries Tide Times
                   </h2>
                 </div>
@@ -125,14 +125,7 @@ const Tides = ({ showTides, setShowTides }) => {
                   </table>
                 </div>
               </div>
-              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 rounded-b-lg">
-                <button
-                  className="hidden md:inline-flex cursor-pointer rounded-md border border-transparent bg-red-800 px-4 py-2 text-white shadow-sm hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => setShowTides(false)}
-                >
-                  DISMISS
-                </button>
-              </div>
+              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 rounded-b-lg"></div>
             </motion.div>
           </div>
         </div>

@@ -26,6 +26,7 @@ model Post {
 model Event {
   id        String  @id @default(cuid())
   title     String
+  category String?
   content   String?
   address   String?
   eventDate DateTime
@@ -35,6 +36,7 @@ model Event {
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
 }
+
 
 
 

@@ -5,6 +5,7 @@ import { GetStaticProps } from "next";
 import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import themeImg from "../public/static/skerries-windmill.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
@@ -51,6 +52,11 @@ type Props = {
 const Home: React.FC<Props> = (props) => {
   const [showTrains, setShowTrains] = useState(false);
   const [showTides, setShowTides] = useState(false);
+  const router = useRouter();
+  const handleEventsClick = (e) => {
+    e.preventDefault();
+    router.push("/events");
+  };
   return (
     <div className="relative bg-black">
       <Head>
@@ -90,7 +96,7 @@ const Home: React.FC<Props> = (props) => {
       </div>
       <div className="relative flex flex-col pt-12 2xl:place-content-center lg:h-screen">
         <div className="relative container mx-auto flex z-20 px-4">
-          <div className="hidden lg:flex w-1/3 flex-col place-content-end pr-10 pb-8">
+          <div className="hidden lg:flex w-1/3 flex-col place-content-end pr-10 pb-16">
             <h1 className="text-6xl 2xl:text-8xl text-slate-100">Skez Live</h1>
             <p className="text-slate-100 text-3xl">
               a local app. for local people
@@ -119,6 +125,14 @@ const Home: React.FC<Props> = (props) => {
                   <Event event={event} />
                 </div>
               ))}
+              <div className="row-start-7">
+                <a
+                  className="inline-flex mb-2 md:mb-0 w-full md:w-auto cursor-pointer justify-center rounded-lg text-sm font-semibold py-2 px-4 bg-sky-700 text-white hover:bg-sky-900"
+                  onClick={handleEventsClick}
+                >
+                  VIEW ALL EVENTS
+                </a>
+              </div>
               <div className="relative hidden lg:block col-span-2 row-span-3 col-start-3 row-start-1">
                 <div className="flex flex-col place-content-end relative rounded-md w-full h-full mb-2 lg:mb-0 bg-sky-700 hover:bg-sky-800">
                   <img

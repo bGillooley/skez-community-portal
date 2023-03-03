@@ -11,12 +11,21 @@ const Draft: React.FC = () => {
   const [content, setContent] = useState("");
   const [venue, setVenue] = useState("");
   const [address, setAddress] = useState("");
+  const [category, setCategory] = useState("");
   const [eventTime, setEventTime] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title, content, venue, address, eventDate, eventTime };
+      const body = {
+        title,
+        category,
+        content,
+        venue,
+        address,
+        eventDate,
+        eventTime,
+      };
       await fetch("/api/event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -60,6 +69,14 @@ const Draft: React.FC = () => {
             type="text"
             value={address}
           />
+          <select onChange={(e) => setCategory(e.target.value)}>
+            <optgroup label="Select Category">
+              <option value="music">music</option>
+              <option value="music">music</option>
+              <option value="sport">sport</option>
+              <option value="satanism">satanism</option>
+            </optgroup>
+          </select>
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}

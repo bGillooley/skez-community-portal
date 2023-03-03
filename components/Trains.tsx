@@ -47,34 +47,34 @@ const Trains = ({ showTrains, setShowTrains }) => {
       <AnimatePresence>
         <div className="fixed left-0 top-0 w-full h-full z-50">
           <motion.div
-            className="absolute w-full h-full bg-black opacity-50 z-10"
+            className="fixed w-full h-full bg-black opacity-50 z-10"
             onClick={() => setShowTrains(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
           ></motion.div>
-          <div className="relative md:flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
+          <div className="relative md:flex pointer-events-none md:w-screen md:h-screen md:items-center md:justify-center z-50">
             <motion.div
-              className="w-full md:w-[520px] h-auto"
+              className="w-full md:w-[520px] h-auto pointer-events-auto"
               initial={{ y: 1500, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.25 }}
               exit={{ y: 1500, opacity: 0 }}
             >
-              <div className="w-full  pt-14 md:pt-4 md:p-4  md:bg-sky-700 text-white md:rounded-t-lg">
-                <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
+              <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
+                <div className="bg-sky-700 rounded-t-md pb-4">
                   <div
-                    className="md:hidden flex flex-col place-content-center mb-4 pt-2 cursor-pointer z-50"
+                    className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
                     onClick={() => setShowTrains(false)}
                   >
-                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-200">
+                    <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
                       <MdArrowForwardIos />
                     </div>
                     <span className="text-slate-400 text-xs text-center">
                       close
                     </span>
                   </div>
-                  <h2 className="text-center mx-2 text-xl md:text-xl">
+                  <h2 className="text-center mx-2 text-xl md:text-2xl">
                     Next Trains from Skerries Station
                   </h2>
                 </div>
@@ -156,12 +156,6 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   target="_blank"
                 >
                   VIEW ON IRISH RAIL
-                </a>
-                <a
-                  className="hidden md:inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-red-800 text-white hover:bg-red-900  ml-4"
-                  onClick={() => setShowTrains(false)}
-                >
-                  DISMISS
                 </a>
               </div>
             </motion.div>
