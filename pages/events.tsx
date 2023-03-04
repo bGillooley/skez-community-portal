@@ -77,10 +77,28 @@ const Events: React.FC<Props> = (props) => {
           priority
         />
         <div className="absolute z-10  w-full h-full bg-gradient-to-b from-transparent to-black"></div>
-        <div className="relative pt-36 pb-6 px-6 z-20">
+        <div className="relative pt-36 pb-4 md:pb-8 px-6 z-20">
           <h1 className="text-3xl md:text-6xl text-slate-100 text-center">
             What's On in Skerries
           </h1>
+        </div>
+        <div className="md:hidden relative z-20 text-center text-lg pb-4 text-white">
+          <div className="inline-block px-2">Filter: </div>
+          <div className="inline-block px-2" onClick={() => setFilter("")}>
+            <span className={filter === "" ? "font-bold" : "font-normal"}>
+              All
+            </span>
+          </div>
+          <div className="inline-block px-2" onClick={() => setFilter("music")}>
+            <span className={filter === "music" ? "font-bold" : "font-normal"}>
+              Music
+            </span>
+          </div>
+          <div className="inline-block px-2" onClick={() => setFilter("sport")}>
+            <span className={filter === "sport" ? "font-bold" : "font-normal"}>
+              Sport
+            </span>
+          </div>
         </div>
       </div>
       <div className="relative w-full pb-16 bg-slate-50">
@@ -93,7 +111,7 @@ const Events: React.FC<Props> = (props) => {
                 </div>
               ))}
             </div>
-            <div className="relative md:w-[380px] drop-shadow">
+            <div className="hidden md:block relative  md:w-[380px] drop-shadow">
               <div className="w-full p-4 mb-2 ml-2 bg-white rounded-md">
                 <h2 className="text-2xl mb-4 font-semibold text-center">
                   FILTER BY CATEGORY
