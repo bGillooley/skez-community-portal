@@ -113,7 +113,7 @@ const Tides = ({ showTides, setShowTides }) => {
                       <tr>
                         {tideData.slice(0, 3).map((elm, i) => {
                           return (
-                            <td key={i} className="align-top ">
+                            <td key={i} className="align-top pr-2">
                               <div
                                 dangerouslySetInnerHTML={{ __html: elm.tides }}
                               />
