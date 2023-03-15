@@ -32,8 +32,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
             className="absolute w-full h-full bg-black opacity-50 z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
-            exit={{ opacity: 0 }}
-          ></motion.div>
+            exit={{ opacity: 0 }}></motion.div>
           <div className="absolute w-full h-full  text-white flex justify-center items-center">
             <div className="relative z-20 text-3xl">Loading...</div>
           </div>
@@ -51,22 +50,19 @@ const Trains = ({ showTrains, setShowTrains }) => {
             onClick={() => setShowTrains(false)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
-            exit={{ opacity: 0 }}
-          ></motion.div>
+            exit={{ opacity: 0 }}></motion.div>
           <div className="relative md:flex pointer-events-none md:w-screen md:h-screen md:items-center md:justify-center z-50">
             <motion.div
               className="w-full md:w-[520px] h-auto pointer-events-auto"
               initial={{ y: 1500, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ ease: "easeOut", duration: 0.25 }}
-              exit={{ y: 1500, opacity: 0 }}
-            >
+              exit={{ y: 1500, opacity: 0 }}>
               <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
                 <div className="bg-sky-700 rounded-t-md pb-4">
                   <div
                     className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
-                    onClick={() => setShowTrains(false)}
-                  >
+                    onClick={() => setShowTrains(false)}>
                     <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
                       <MdArrowForwardIos />
                     </div>
@@ -92,7 +88,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                     <tbody>
                       {northBoundTrains === undefined && (
                         <tr>
-                          <td>No trains scheduled at this time</td>
+                          <td colSpan="2">No trains scheduled at this time</td>
                         </tr>
                       )}
 
@@ -101,8 +97,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                           return (
                             <tr
                               className="odd:bg-slate-100 even:bg-white"
-                              key={e.eta}
-                            >
+                              key={e.eta}>
                               <td className="text-left p-1">{e.destination}</td>
                               <td className="text-right p-1">{e.eta}</td>
                             </tr>
@@ -123,7 +118,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                     <tbody>
                       {southBoundTrains === undefined && (
                         <tr>
-                          <td>No trains scheduled at this time</td>
+                          <td colSpan="2">No trains scheduled at this time</td>
                         </tr>
                       )}
 
@@ -132,8 +127,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                           return (
                             <tr
                               className="odd:bg-slate-100 even:bg-white"
-                              key={e.eta}
-                            >
+                              key={e.eta}>
                               <td className="text-left p-1">{e.destination}</td>
                               <td className="text-right p-1">{e.eta}</td>
                             </tr>
@@ -146,15 +140,13 @@ const Trains = ({ showTrains, setShowTrains }) => {
               <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 ">
                 <button
                   className="inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
-                  onClick={getTrains}
-                >
+                  onClick={getTrains}>
                   UPDATE INFO
                 </button>
                 <a
                   className="inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700  ml-4"
                   href="https://www.irishrail.ie/en-ie/train-timetables/live-departure-train-times?key=skerries&REQ0JourneyStopskeyID=&HWAI%3DJS%21js=yes&HWAI%3DJS%21ajax=yes#live-departure-anchor"
-                  target="_blank"
-                >
+                  target="_blank">
                   VIEW ON IRISH RAIL
                 </a>
               </div>
