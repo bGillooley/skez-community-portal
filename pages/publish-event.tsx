@@ -1,10 +1,9 @@
 // pages/drafts.tsx
 
-import React from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
-
+import Link from "next/link";
 import Event, { EventProps } from "../components/Event";
 import prisma from "../lib/prisma";
 import Header from "@/components/Header";
@@ -43,8 +42,30 @@ async function deletePost(id: string): Promise<void> {
   await fetch(`/api/event/${id}`, {
     method: "DELETE",
   });
-  await Router.reload();
+  Router.reload();
 }
+
+const duplicateEvent = async (event) => {
+  try {
+    const body = {
+      title: event.title,
+      category: event.category,
+      content: event.content,
+      venue: event.venue,
+      address: event.address,
+      eventDate: event.eventDate,
+      eventTime: event.eventTime,
+    };
+    await fetch("/api/event/duplicate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    await Router.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const Drafts: React.FC<Props> = (props) => {
   const { data: session } = useSession();
@@ -97,28 +118,50 @@ const Drafts: React.FC<Props> = (props) => {
         <h1 className="text-4xl pb-8">All Events</h1>
         <main className="lg:grid lg:grid-cols-3 lg:gap-4">
           {props.drafts.map((event) => (
-            <div className="mb-4 lg:mb-0 rounded border border-gray-100 bg-slate-50">
+            <div
+              key={event.id}
+              className="mb-4 lg:mb-0 rounded border border-gray-100 bg-slate-50"
+            >
               <Event event={event} />
               <div className="p-2 shadow-inner">
                 {!event.published && (
                   <button
-                    className="mb-2 lg:mb-0 inline-flex w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    className="mb-2 lg:mb-0 mr-2 inline-flex w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700  focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                     onClick={() => publishPost(event.id)}
                   >
-                    Publish Event
+                    Publish
                   </button>
                 )}
 
                 <button
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                   onClick={() => deletePost(event.id)}
                 >
-                  Delete Event
+                  Delete
+                </button>
+                <Link
+                  className="mb-2 lg:mb-0 inline-flex w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  href={{
+                    pathname: "/update-event",
+                    query: event,
+                  }}
+                >
+                  Update
+                </Link>
+                <button
+                  className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                  onClick={() => duplicateEvent(event)}
+                >
+                  Duplicate
                 </button>
               </div>
             </div>
           ))}
         </main>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
       <style jsx>{`
         .post {

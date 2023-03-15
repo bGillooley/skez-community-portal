@@ -126,12 +126,12 @@ const Home: React.FC<Props> = (props) => {
                 </div>
               ))}
               <div className="row-start-7">
-                <a
+                <button
                   className="inline-flex mb-2 md:mb-0 w-full md:w-auto cursor-pointer justify-center rounded-lg text-sm font-semibold py-2 px-4 bg-sky-700 text-white hover:bg-sky-900"
                   onClick={handleEventsClick}
                 >
                   VIEW ALL EVENTS
-                </a>
+                </button>
               </div>
               <div className="relative hidden lg:block col-span-2 row-span-3 col-start-3 row-start-1">
                 <div className="flex flex-col place-content-end relative rounded-md w-full h-full mb-2 lg:mb-0 bg-sky-700 hover:bg-sky-800">

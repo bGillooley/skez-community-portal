@@ -70,7 +70,7 @@ const Tides = ({ showTides, setShowTides }) => {
               exit={{ y: 1500, opacity: 0 }}
             >
               <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                <div className="bg-sky-700 rounded-t-md pb-4">
+                <div className="bg-sky-700 rounded-t-2xl pb-4">
                   <div
                     className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
                     onClick={() => setShowTides(false)}
@@ -87,22 +87,22 @@ const Tides = ({ showTides, setShowTides }) => {
                   </h2>
                 </div>
               </div>
-              <div className="bg-white">
-                <div className="p-4">
-                  <table className="w-full">
+              <div className="bg-slate-100">
+                <div className="">
+                  <table className="w-full border-separate border-spacing-2">
                     <thead>
                       <tr>
-                        <th className="text-left uppercase">
+                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
                           {dayToday.toLocaleString("en-En", {
                             weekday: "long",
                           })}
                         </th>
-                        <th className="text-left uppercase">
+                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
                           {dayTomorrow.toLocaleString("en-En", {
                             weekday: "long",
                           })}
                         </th>
-                        <th className="text-left uppercase">
+                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
                           {dayAfterTomorrow.toLocaleString("en-En", {
                             weekday: "long",
                           })}
@@ -113,7 +113,10 @@ const Tides = ({ showTides, setShowTides }) => {
                       <tr>
                         {tideData.slice(0, 3).map((elm, i) => {
                           return (
-                            <td key={i} className="align-top pr-2">
+                            <td
+                              key={i}
+                              className="align-top pr-2 bg-white p-2 text-center border-slate-200 border rounded-md"
+                            >
                               <div
                                 dangerouslySetInnerHTML={{ __html: elm.tides }}
                               />
@@ -125,7 +128,7 @@ const Tides = ({ showTides, setShowTides }) => {
                   </table>
                 </div>
               </div>
-              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 rounded-b-lg"></div>
+              <div className="bg-sky-700 p-1 rounded-b-2xl"></div>
             </motion.div>
           </div>
         </div>

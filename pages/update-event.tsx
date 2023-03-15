@@ -1,6 +1,6 @@
 // pages/create.tsx
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Header from "@/components/Header";
@@ -10,13 +10,18 @@ import "react-datepicker/dist/react-datepicker.css";
 const Draft: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [venue, setVenue] = useState("");
-  const [address, setAddress] = useState("");
-  const [category, setCategory] = useState("");
-  const [eventTime, setEventTime] = useState("");
-  const [eventDate, setEventDate] = useState(new Date());
+  const query = router.query;
+  const id = query.id;
+  const [title, setTitle] = useState(query.title);
+  const [content, setContent] = useState(query.content);
+  const [venue, setVenue] = useState(query.venue);
+  const [address, setAddress] = useState(query.address);
+  const [category, setCategory] = useState(query.category);
+  const [eventTime, setEventTime] = useState(query.eventTime);
+  const [eventDate, setEventDate] = useState(
+    new Date(query.eventDate.toString())
+  );
+
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
@@ -29,12 +34,11 @@ const Draft: React.FC = () => {
         eventDate,
         eventTime,
       };
-      await fetch("/api/event", {
-        method: "POST",
+      await fetch(`/api/event/${id}`, {
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-
       if (session.user.role === "editor") {
         router.push("/event-drafts");
       }
@@ -58,7 +62,7 @@ const Draft: React.FC = () => {
       <Header />
       <div className="mx-auto my-16 max-w-md">
         <form onSubmit={submitData}>
-          <h1>New Event Draft</h1>
+          <h1 className="text-3xl">Edit Event</h1>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
@@ -78,12 +82,9 @@ const Draft: React.FC = () => {
             type="text"
             value={address}
           />
-          <select
-            onChange={(e) => setCategory(e.target.value)}
-            value="Choose Category:"
-          >
+          <select onChange={(e) => setCategory(e.target.value)}>
             <optgroup label="Select Category">
-              <option disabled hidden>
+              <option disabled selected hidden>
                 Choose Category:
               </option>
               <option value="music">music</option>
@@ -109,7 +110,7 @@ const Draft: React.FC = () => {
             selected={eventDate}
             onChange={(date: Date) => setEventDate(date)}
           />
-          <input disabled={!title} type="submit" value="Create" />
+          <input disabled={!title} type="submit" value="UPDATE EVENT" />
           <a
             className="back"
             href="#"
