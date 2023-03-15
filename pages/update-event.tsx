@@ -6,21 +6,22 @@ import { useRouter } from "next/router";
 import Header from "@/components/Header";
 import { useSession } from "next-auth/react";
 import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 const Draft: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const query = router.query;
   const id = query.id;
+
+  console.log(query.eventDate);
   const [title, setTitle] = useState(query.title);
   const [content, setContent] = useState(query.content);
   const [venue, setVenue] = useState(query.venue);
   const [address, setAddress] = useState(query.address);
   const [category, setCategory] = useState(query.category);
   const [eventTime, setEventTime] = useState(query.eventTime);
-  const [eventDate, setEventDate] = useState(
-    new Date(query.eventDate.toString())
-  );
+  const [eventDate, setEventDate] = useState(new Date());
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -82,9 +83,12 @@ const Draft: React.FC = () => {
             type="text"
             value={address}
           />
-          <select onChange={(e) => setCategory(e.target.value)}>
+          <select
+            onChange={(e) => setCategory(e.target.value)}
+            value="Choose Category:"
+          >
             <optgroup label="Select Category">
-              <option disabled selected hidden>
+              <option disabled hidden>
                 Choose Category:
               </option>
               <option value="music">music</option>
