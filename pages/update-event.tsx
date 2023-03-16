@@ -14,7 +14,6 @@ const Draft: React.FC = () => {
   const query = router.query;
   const id = query.id;
 
-  console.log(query.eventDate);
   const [title, setTitle] = useState(query.title);
   const [content, setContent] = useState(query.content);
   const [venue, setVenue] = useState(query.venue);
@@ -50,6 +49,11 @@ const Draft: React.FC = () => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    console.log(query.eventDate);
+    setEventDate(new Date(query.eventDate));
+  }, [query.eventDate]);
 
   return (
     <>

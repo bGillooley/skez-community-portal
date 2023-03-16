@@ -6,7 +6,7 @@ import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import themeImg from "../public/static/skerries-windmill.jpg";
+import themeImg from "../public/static/skez-tide.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import { MdWaves, MdTrain } from "react-icons/md";
@@ -66,7 +66,7 @@ const Home: React.FC<Props> = (props) => {
         <meta name="robots" content="noindex"></meta>
       </Head>
       <Header />
-      <div className="relative lg:absolute lg:h-screen lg:w-full">
+      <div className="relative lg:fixed lg:h-full lg:w-full">
         <Image
           className="z-0 absolute w-full h-full object-cover"
           src={themeImg}
@@ -94,8 +94,8 @@ const Home: React.FC<Props> = (props) => {
           </p>
         </div>
       </div>
-      <div className="relative flex flex-col pt-12 2xl:place-content-center lg:h-screen">
-        <div className="relative container mx-auto flex z-20 px-4">
+      <div className="relative flex flex-col 2xl:place-content-center lg:min-h-screen">
+        <div className="relative pt-12 pb-16 container mx-auto flex z-20 px-4">
           <div className="hidden lg:flex w-1/3 flex-col place-content-end pr-10 pb-16">
             <h1 className="text-6xl 2xl:text-8xl text-slate-100">Skez Live</h1>
             <p className="text-slate-100 text-3xl">
