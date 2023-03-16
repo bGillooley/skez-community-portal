@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import { useSession } from "next-auth/react";
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css?v=1.2";
 const Draft: React.FC = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -19,7 +19,7 @@ const Draft: React.FC = () => {
   const [content, setContent] = useState(query.content);
   const [venue, setVenue] = useState(query.venue);
   const [address, setAddress] = useState(query.address);
-  const [category, setCategory] = useState(query.category);
+  //  const [category, setCategory] = useState(query.category);
   const [eventTime, setEventTime] = useState(query.eventTime);
   const [eventDate, setEventDate] = useState(new Date());
 
@@ -28,7 +28,7 @@ const Draft: React.FC = () => {
     try {
       const body = {
         title,
-        category,
+        // category,
         content,
         venue,
         address,
@@ -63,55 +63,62 @@ const Draft: React.FC = () => {
       <Header />
       <div className="mx-auto my-16 max-w-md">
         <form onSubmit={submitData}>
-          <h1 className="text-3xl">Edit Event</h1>
+          <h1 className="text-3xl mb-8 mt-12">New Event Draft</h1>
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Title
+          </label>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="Short description"
             type="text"
             value={title}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-2 mb-1">
+            Event Venue
+          </label>
           <input
             onChange={(e) => setVenue(e.target.value)}
-            placeholder="Venue"
+            placeholder="Venue name"
             type="text"
             value={venue}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Venue Address
+          </label>
           <input
             onChange={(e) => setAddress(e.target.value)}
-            placeholder="Address"
+            placeholder="Venue address (for google maps)"
             type="text"
             value={address}
           />
-          <select
-            onChange={(e) => setCategory(e.target.value)}
-            value="Choose Category:"
-          >
-            <optgroup label="Select Category">
-              <option disabled hidden>
-                Choose Category:
-              </option>
-              <option value="music">music</option>
-              <option value="sport">sport</option>
-              <option value="satanism">satanism</option>
-            </optgroup>
-          </select>
+
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Description
+          </label>
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Description"
+            placeholder="Add event description (optional)"
             rows={8}
             value={content}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Time
+          </label>
           <input
             onChange={(e) => setEventTime(e.target.value)}
-            placeholder="Event Time"
+            placeholder="eg. 20.30"
             type="text"
             value={eventTime}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Date
+          </label>
           <DatePicker
             placeholder="Event Date"
             selected={eventDate}
+            dateFormat="dd/MM/yyyy"
             onChange={(date: Date) => setEventDate(date)}
           />
           <input disabled={!title} type="submit" value="UPDATE EVENT" />

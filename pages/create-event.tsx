@@ -56,60 +56,78 @@ const Draft: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="mx-auto my-16 max-w-md">
+      <div className="mx-auto my-12 max-w-md">
         <form onSubmit={submitData}>
-          <h1>New Event Draft</h1>
+          <h1 className="text-3xl mb-8 mt-12">New Event Draft</h1>
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Title
+          </label>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="Short description"
             type="text"
             value={title}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-2 mb-1">
+            Event Venue
+          </label>
           <input
             onChange={(e) => setVenue(e.target.value)}
-            placeholder="Venue"
+            placeholder="Venue name"
             type="text"
             value={venue}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Venue Address
+          </label>
           <input
             onChange={(e) => setAddress(e.target.value)}
-            placeholder="Address"
+            placeholder="Venue address (for google maps)"
             type="text"
             value={address}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Category
+          </label>
           <select
             onChange={(e) => setCategory(e.target.value)}
-            value="Choose Category:"
+            className="border-2 rounded-md bg-slate-50 px-1 py-2"
           >
-            <optgroup label="Select Category">
-              <option disabled hidden>
-                Choose Category:
-              </option>
-              <option value="music">music</option>
-              <option value="sport">sport</option>
-              <option value="satanism">satanism</option>
-            </optgroup>
+            <option hidden>Select from:</option>
+            <option value="music">music</option>
+            <option value="sport">sport</option>
+            <option value="satanism">satanism</option>
           </select>
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Description
+          </label>
           <textarea
             cols={50}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Description"
+            placeholder="Add event description (optional)"
             rows={8}
             value={content}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Time
+          </label>
           <input
             onChange={(e) => setEventTime(e.target.value)}
-            placeholder="Event Time"
+            placeholder="eg. 19:30"
             type="text"
             value={eventTime}
           />
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Date
+          </label>
           <DatePicker
             placeholder="Event Date"
             selected={eventDate}
+            dateFormat="dd/MM/yyyy"
             onChange={(date: Date) => setEventDate(date)}
           />
-          <input disabled={!title} type="submit" value="Create" />
+          <input disabled={!title} type="submit" value="SAVE EVENT" />
           <a
             className="back"
             href="#"
