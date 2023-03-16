@@ -60,7 +60,7 @@ const formatDateWeekDay = (dateString) => {
 const calendarDate = (dateStringInput) => {
   const dateString = new Date(dateStringInput);
   const year = dateString.toLocaleString("default", { year: "numeric" });
-  const month = dateString.toLocaleString("default", { month: "2-digit" });
+  const month = dateString.toLocaleString("defanult", { month: "2-digit" });
   const day = dateString.toLocaleString("default", { day: "2-digit" });
   return `${year}-${month}-${day}`;
 };
@@ -105,7 +105,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
           </div>
         </div>
         <div className="grow">
-          <div className="text-sm text-slate-400">
+          <div className="text-sm text-slate-500">
             <span className="font-bold capitalize ">{event.category}</span> -
             {formatDateWeekDay(event.eventDate)} - {event.eventTime}
           </div>
