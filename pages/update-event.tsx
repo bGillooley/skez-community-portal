@@ -51,8 +51,11 @@ const Draft: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(query.eventDate);
-    setEventDate(new Date(query.eventDate));
+    if (router.isReady) {
+      console.log(query.eventDate);
+      const updateDate = query.eventDate;
+      setEventDate(new Date(updateDate));
+    }
   }, [query.eventDate]);
 
   return (
