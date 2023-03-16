@@ -96,7 +96,7 @@ const Events: React.FC<Props> = (props) => {
             <span
               className={filter === "culture" ? "font-bold" : "font-normal"}
             >
-              Music
+              Culture
             </span>
           </div>
           <div className="inline-block px-2" onClick={() => setFilter("music")}>

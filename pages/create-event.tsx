@@ -95,9 +95,9 @@ const Draft: React.FC = () => {
             className="border-2 rounded-md bg-slate-50 px-1 py-2"
           >
             <option hidden>Select from:</option>
+            <option value="culture">culture</option>
             <option value="music">music</option>
             <option value="sport">sport</option>
-            <option value="satanism">satanism</option>
           </select>
           <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
             Event Description
