@@ -18,7 +18,7 @@ const Draft: React.FC = () => {
   const [content, setContent] = useState(query.content);
   const [venue, setVenue] = useState(query.venue);
   const [address, setAddress] = useState(query.address);
-  //  const [category, setCategory] = useState(query.category);
+  const [category, setCategory] = useState(query.category);
   const [eventTime, setEventTime] = useState(query.eventTime);
   const [eventDate, setEventDate] = useState(new Date());
 
@@ -27,7 +27,7 @@ const Draft: React.FC = () => {
     try {
       const body = {
         title,
-        // category,
+        category,
         content,
         venue,
         address,
@@ -99,7 +99,19 @@ const Draft: React.FC = () => {
             type="text"
             value={address}
           />
-
+          <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
+            Event Category
+          </label>
+          <select
+            onChange={(e) => setCategory(e.target.value)}
+            className="border-2 rounded-md bg-slate-50 px-1 py-2"
+            value={category}
+          >
+            <option hidden>Select from:</option>
+            <option value="culture">culture</option>
+            <option value="music">music</option>
+            <option value="sport">sport</option>
+          </select>
           <label className="block text-gray-700 text-sm font-bold mt-4 mb-1">
             Event Description
           </label>
