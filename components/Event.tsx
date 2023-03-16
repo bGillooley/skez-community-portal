@@ -49,7 +49,7 @@ const formatDateDay = (dateString) => {
 
 const formatDateWeekDay = (dateString) => {
   const timeformat = {
-    weekday: "short",
+    weekday: "long",
     hour12: false,
   } as const;
 
@@ -68,7 +68,7 @@ const calendarDate = (dateStringInput) => {
 export type EventProps = {
   id: string;
   title: string;
-  cateogry: string;
+  category: string;
   content: string;
   address: string;
   venue: string;
@@ -105,7 +105,8 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
           </div>
         </div>
         <div className="grow">
-          <div className="text-sm text-slate-500">
+          <div className="text-sm text-slate-400">
+            <span className="font-bold capitalize ">{event.category} - </span>
             {formatDateWeekDay(event.eventDate)} - {event.eventTime}
           </div>
           <div className="text-base text-sky-700 font-semibold">
