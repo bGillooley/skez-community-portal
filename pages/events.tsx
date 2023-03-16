@@ -89,6 +89,16 @@ const Events: React.FC<Props> = (props) => {
               All
             </span>
           </div>
+          <div
+            className="inline-block px-2"
+            onClick={() => setFilter("culture")}
+          >
+            <span
+              className={filter === "culture" ? "font-bold" : "font-normal"}
+            >
+              Music
+            </span>
+          </div>
           <div className="inline-block px-2" onClick={() => setFilter("music")}>
             <span className={filter === "music" ? "font-bold" : "font-normal"}>
               Music
@@ -131,6 +141,23 @@ const Events: React.FC<Props> = (props) => {
                       </span>
                     </div>
                     <div className="flex justify-center items-center">
+                      <MdArrowForwardIos />
+                    </div>
+                  </li>
+                  <li
+                    className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
+                    onClick={() => setFilter("culture")}
+                  >
+                    <div className="font-semibold">
+                      <span
+                        className={
+                          filter === "culture" ? "text-black" : "text-sky-700"
+                        }
+                      >
+                        Culture
+                      </span>
+                    </div>
+                    <div className="flex justify-center items-center text-sky-700">
                       <MdArrowForwardIos />
                     </div>
                   </li>

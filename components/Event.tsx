@@ -106,7 +106,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
         </div>
         <div className="grow">
           <div className="text-sm text-slate-400">
-            <span className="font-bold capitalize ">{event.category} - </span>
+            <span className="font-bold capitalize ">{event.category}</span> -
             {formatDateWeekDay(event.eventDate)} - {event.eventTime}
           </div>
           <div className="text-base text-sky-700 font-semibold">
