@@ -71,17 +71,17 @@ const Tides = ({ showTides, setShowTides }) => {
             >
               <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
                 <div className="bg-sky-700 rounded-t-2xl pb-4">
-                  <div
+                  <button
                     className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
                     onClick={() => setShowTides(false)}
                   >
                     <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
                       <MdArrowForwardIos />
                     </div>
-                    <span className="text-slate-400 text-xs text-center">
+                    <div className="w-full text-slate-400 text-xs text-center">
                       close
-                    </span>
-                  </div>
+                    </div>
+                  </button>
                   <h2 className="text-center mx-2 text-xl md:text-2xl">
                     Skerries Tide Times
                   </h2>

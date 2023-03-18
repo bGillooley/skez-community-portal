@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdArrowForwardIos } from "react-icons/md";
-
 import "add-to-calendar-button";
 const formatDate = (dateString) => {
   const timeformat = {
@@ -89,12 +88,34 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
   const encodedAddress = encodeURIComponent(event.address);
   const googleStaticMapURL = `https://maps.googleapis.com/maps/api/staticmap?center=${encodedAddress}&zoom=16&markers=color:red|${encodedAddress}&size=400x400&key=${process.env.NEXT_PUBLIC_GOOGLE_STATIC_MAP_KEY}`;
   const [modalVisible, setModalVisible] = useState(false);
+
+  const handleShowModalClick = (e) => {
+    e.preventDefault();
+    setModalVisible(true);
+  };
+  const handleHideModalClick = (e) => {
+    e.preventDefault();
+    setModalVisible(false);
+  };
+  const handleShowModalKeyUp = (e) => {
+    if (e.key === "Enter") {
+      setModalVisible(true);
+    }
+  };
+
+  const handleHideModalKeyUp = (e) => {
+    if (e.key === "Enter" || e.key === "Escape") {
+      setModalVisible(false);
+    }
+  };
   return (
     <>
-      <div
-        onClick={() => setModalVisible(true)}
+      <a
+        onClick={handleShowModalClick}
+        onKeyUp={handleShowModalKeyUp}
         key={event.id}
         className="flex relative bg-white hover:bg-slate-50 drop-shadow border border-gray-100 rounded-md py-2 px-3 cursor-pointer"
+        tabIndex="1"
       >
         <div className="flex flex-col pr-4">
           <div className="text-center uppercase">
@@ -114,13 +135,13 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
           </div>
           <div className="text-sm text-slate-500">{event.venue}</div>
         </div>
-      </div>
+      </a>
       <AnimatePresence>
         {modalVisible && (
           <div className="fixed left-0 top-0 w-full h-full z-50">
             <motion.div
               className="fixed w-full h-full bg-black opacity-50 z-10"
-              onClick={() => setModalVisible(false)}
+              onClick={handleHideModalClick}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.75 }}
               exit={{ opacity: 0 }}
@@ -134,18 +155,23 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 exit={{ y: 1500, opacity: 0 }}
               >
                 <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                  <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0">
-                    <div
-                      className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
-                      onClick={() => setModalVisible(false)}
-                    >
-                      <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
+                  <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0 text-center">
+                    <div className="flex w-full flex-col place-content-center mb-2 pt-2  z-50">
+                      <button
+                        className="rotate-90 mx-auto origin-center text-3xl text-slate-300"
+                        onClick={handleHideModalClick}
+                        onKeyUp={handleHideModalKeyUp}
+                        aria-label="close"
+                        tabIndex={101}
+                        autoFocus
+                      >
                         <MdArrowForwardIos />
-                      </div>
-                      <span className="text-slate-400 text-xs text-center">
+                      </button>
+                      <div className="w-full text-slate-400 text-xs text-center">
                         close
-                      </span>
+                      </div>
                     </div>
+
                     <h2 className="text-center mx-2 text-xl md:text-2xl">
                       {event.title}
                     </h2>
@@ -183,6 +209,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                         location={event.address}
                         options="'Apple','Google','iCal','Outlook.com'"
                         buttonStyle="text"
+                        tabIndex={102}
                       ></add-to-calendar-button>
                     </div>
                   </div>
@@ -212,6 +239,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                           className="inline-flex mb-2 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-4 py-2 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                           type="submit"
                           value="View Map / Get directions"
+                          tabIndex={103}
                         />
                       </form>
                     </div>

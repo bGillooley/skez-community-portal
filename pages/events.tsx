@@ -114,90 +114,95 @@ const Events: React.FC<Props> = (props) => {
       <div className="relative w-full pb-16 bg-slate-50">
         <div className="relative -mt-4 container max-w-5xl mx-auto z-50">
           <div className="flex flex-col md:flex-row md:space-between px-4">
-            <div className="grow">
+            <main className="grow">
               {filtered.map((event) => (
                 <div key={event.id} className="mb-2">
                   <Event event={event} />
                 </div>
               ))}
-            </div>
-            <div className="hidden md:block relative  md:w-[380px] drop-shadow">
-              <div className="w-full p-4 mb-2 ml-2 bg-white rounded-md">
-                <h2 className="text-2xl mb-4 font-semibold text-center">
-                  FILTER BY CATEGORY
-                </h2>
-                <ul className="text-sky-700">
-                  <li
-                    className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
-                    onClick={() => setFilter("")}
+            </main>
+            <nav role="navigation" aria-labelledby="filter-by-category">
+              <div className="hidden md:block relative  md:w-[380px] drop-shadow">
+                <div className="w-full p-4 mb-2 ml-2 bg-white rounded-md">
+                  <h2
+                    id="filter-by-category"
+                    className="text-2xl mb-4 font-semibold text-center"
                   >
-                    <div className="font-semibold">
-                      <span
-                        className={
-                          filter === "" ? "text-black" : "text-sky-700"
-                        }
-                      >
-                        All Events
-                      </span>
-                    </div>
-                    <div className="flex justify-center items-center">
-                      <MdArrowForwardIos />
-                    </div>
-                  </li>
-                  <li
-                    className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
-                    onClick={() => setFilter("culture")}
-                  >
-                    <div className="font-semibold">
-                      <span
-                        className={
-                          filter === "culture" ? "text-black" : "text-sky-700"
-                        }
-                      >
-                        Culture
-                      </span>
-                    </div>
-                    <div className="flex justify-center items-center text-sky-700">
-                      <MdArrowForwardIos />
-                    </div>
-                  </li>
-                  <li
-                    className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
-                    onClick={() => setFilter("music")}
-                  >
-                    <div className="font-semibold">
-                      <span
-                        className={
-                          filter === "music" ? "text-black" : "text-sky-700"
-                        }
-                      >
-                        Music
-                      </span>
-                    </div>
-                    <div className="flex justify-center items-center text-sky-700">
-                      <MdArrowForwardIos />
-                    </div>
-                  </li>
-                  <li
-                    className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
-                    onClick={() => setFilter("sport")}
-                  >
-                    <div className="font-semibold">
-                      <span
-                        className={
-                          filter === "sport" ? "text-black" : "text-sky-700"
-                        }
-                      >
-                        Sport
-                      </span>
-                    </div>
-                    <div className="flex justify-center items-center text-sky-700">
-                      <MdArrowForwardIos />
-                    </div>
-                  </li>
-                </ul>
+                    FILTER BY CATEGORY
+                  </h2>
+                  <ul className="text-sky-700">
+                    <li
+                      className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
+                      onClick={() => setFilter("")}
+                    >
+                      <div className="font-semibold">
+                        <span
+                          className={
+                            filter === "" ? "text-black" : "text-sky-700"
+                          }
+                        >
+                          All Events
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center">
+                        <MdArrowForwardIos />
+                      </div>
+                    </li>
+                    <li
+                      className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
+                      onClick={() => setFilter("culture")}
+                    >
+                      <div className="font-semibold">
+                        <span
+                          className={
+                            filter === "culture" ? "text-black" : "text-sky-700"
+                          }
+                        >
+                          Culture
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center text-sky-700">
+                        <MdArrowForwardIos />
+                      </div>
+                    </li>
+                    <li
+                      className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
+                      onClick={() => setFilter("music")}
+                    >
+                      <div className="font-semibold">
+                        <span
+                          className={
+                            filter === "music" ? "text-black" : "text-sky-700"
+                          }
+                        >
+                          Music
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center text-sky-700">
+                        <MdArrowForwardIos />
+                      </div>
+                    </li>
+                    <li
+                      className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
+                      onClick={() => setFilter("sport")}
+                    >
+                      <div className="font-semibold">
+                        <span
+                          className={
+                            filter === "sport" ? "text-black" : "text-sky-700"
+                          }
+                        >
+                          Sport
+                        </span>
+                      </div>
+                      <div className="flex justify-center items-center text-sky-700">
+                        <MdArrowForwardIos />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </nav>
           </div>
         </div>
       </div>
