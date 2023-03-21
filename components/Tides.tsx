@@ -143,7 +143,7 @@ const Tides = ({ showTides, setShowTides }) => {
                   </table>
                 </div>
               </div>
-              <div className="bg-sky-700 p-1 rounded-b-2xl"></div>
+              <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
             </motion.div>
           </div>
         </div>

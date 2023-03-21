@@ -6,20 +6,14 @@ import { getWeatherData } from "@/lib/getWeather";
 const Weather = ({ showWeather, setShowWeather }) => {
   const [weatherData, setWeatherData] = useState([]);
   const [currentWeather, setCurrentWeather] = useState({});
-  const [lastUpdated, setLastUpdated] = useState("");
   const [loading, setLoading] = useState(true);
   const today = new Date();
-  const currentWeatherUpdated = new Date();
-
   useEffect(() => {
     const fetchWeather = async () => {
       const results = await getWeatherData("forecast");
       const current = await getWeatherData("current");
-      const currentLastUpdated = new Date(current.last_updated_epoch * 1000);
-      setLastUpdated(currentLastUpdated);
       setWeatherData(results);
       setCurrentWeather(current);
-      //  current.last_updated_epoch;
       setLoading(false);
     };
     fetchWeather();
@@ -34,10 +28,6 @@ const Weather = ({ showWeather, setShowWeather }) => {
     if (e.key === "Enter" || e.key === "Escape") {
       setShowWeather(false);
     }
-  };
-
-  const epochToDate = (epoch) => {
-    return new Date(epoch * 1000);
   };
 
   if (loading) {
@@ -98,70 +88,73 @@ const Weather = ({ showWeather, setShowWeather }) => {
                 </h2>
               </div>
             </div>
-            <div className="bg-slate-100 pb-8 relative">
-              <div className="block text-center font-semibold pt-4">
-                CURRENTLY
-              </div>
-              <div className="p-2 flex items-center w-full">
-                <div>
-                  {!loading && (
-                    <div>
-                      <img
-                        className="hidden sm:block"
-                        src={currentWeather.condition.icon.replace(
-                          "64x64",
-                          "128x128"
-                        )}
-                      />
-                      <img
-                        className="block sm:hidden"
-                        src={currentWeather.condition.icon}
-                      />
+            <div className="bg-slate-100 pb-96 md:pb-4 relative">
+              <div className="bg-white">
+                <div className="text-center font-semibold py-4">CURRENTLY</div>
+                <div className="grid grid-cols-6 sm:grid-cols-5">
+                  <div className="-translate-y-2 sm:-translate-y-8 col-span-2 sm:col-span-2">
+                    {!loading && (
+                      <div class="flex place-content-end">
+                        <img
+                          className="hidden sm:block"
+                          src={currentWeather.condition.icon.replace(
+                            "64x64",
+                            "128x128"
+                          )}
+                        />
+                        <img
+                          className="block sm:hidden"
+                          src={currentWeather.condition.icon}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="text-4xl sm:text-5xl text-center col-span-1 sm:col-span-1">
+                    <div className="translate-x-1">
+                      {" "}
+                      {!loading && currentWeather.temp_c}
+                      <span>&#176;</span>
                     </div>
-                  )}
-                </div>
-                <div className="text-3xl sm:text-5xl">
-                  {!loading && currentWeather.temp_c}&#176;
-                  <span className="block text-sm">
-                    {currentWeather.condition.text}
-                  </span>
-                </div>
-                <div className="flex flex-col grow items-center justify-start text-sm px-4">
-                  <div className="text-center">
-                    Precipitation:{" "}
-                    <span className="font-semibold">
-                      {currentWeather.precip_mm}mm
+                    <span className="block text-xs">
+                      {currentWeather.condition.text}
                     </span>
                   </div>
-                  <div className="text-center">
-                    Humidity:{" "}
-                    <span className="font-semibold">
-                      {currentWeather.humidity}
-                    </span>
-                  </div>
-                  <div className="text-center">
-                    Pressure:{" "}
-                    <span className="font-semibold">
-                      {currentWeather.pressure_mb}mb
-                    </span>
-                  </div>
-                  <div className="text-center">
-                    Wind:{" "}
-                    <span className="font-semibold">
-                      {currentWeather.wind_kph} km/h {currentWeather.wind_dir}
-                    </span>
+                  <div className="flex flex-col text-sm px-4 col-span-3 sm:col-span-2">
+                    <div className="">
+                      <span>Precipitation: </span>
+                      <span className="font-semibold">
+                        {currentWeather.precip_mm}mm
+                      </span>
+                    </div>
+                    <div className="">
+                      <span>Humidity: </span>
+                      <span className="font-semibold">
+                        {currentWeather.humidity}
+                      </span>
+                    </div>
+                    <div className="">
+                      <span>Pressure: </span>
+                      <span className="font-semibold">
+                        {currentWeather.pressure_mb}mb
+                      </span>
+                    </div>
+                    <div className="">
+                      <span>Wind: </span>
+                      <span className="font-semibold">
+                        {currentWeather.wind_kph} km/h {currentWeather.wind_dir}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>{}</div>
-              <div className="block text-center font-normal text-slate-400">
-                {}
+
+                <div className="block uppercase text-center py-4 text-xs font-normal text-slate-400">
+                  Last update: {currentWeather.last_updated.split(" ")[1]}
+                </div>
               </div>
               <div className="flex pt-4 border-t-2 border-slate-300">
                 {weatherData.map((weather, index) => {
                   let weekday = new Date();
                   weekday.setDate(today.getDate() + index);
-
                   return (
                     <div
                       className="relative flex flex-1 flex-col"
@@ -179,7 +172,7 @@ const Weather = ({ showWeather, setShowWeather }) => {
                         <span className="font-medium text-black">
                           {Math.round(parseFloat(weather.maxtemp))}&#176;
                         </span>
-                        /
+                        <span className="font-medium text-slate-400"> / </span>
                         <span className="font-medium text-slate-400">
                           {Math.round(parseFloat(weather.mintemp))}&#176;
                         </span>
@@ -192,7 +185,7 @@ const Weather = ({ showWeather, setShowWeather }) => {
                 })}
               </div>
             </div>
-            <div className="bg-sky-700 p-1 rounded-b-2xl"></div>
+            <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
           </motion.div>
         </div>
       </div>

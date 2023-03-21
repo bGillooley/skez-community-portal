@@ -173,7 +173,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   VIEW ON IRISH RAIL
                 </a>
               </div>
-              <div className="bg-sky-700 p-1 rounded-b-2xl"></div>
+              <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
             </motion.div>
           </div>
         </div>
