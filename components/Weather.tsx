@@ -6,18 +6,20 @@ import { getWeatherData } from "@/lib/getWeather";
 const Weather = ({ showWeather, setShowWeather }) => {
   const [weatherData, setWeatherData] = useState([]);
   const [currentWeather, setCurrentWeather] = useState({});
-  const [currentWeatherIcon, setCurrentWeatherIcon] = useState("");
+  const [lastUpdated, setLastUpdated] = useState("");
   const [loading, setLoading] = useState(true);
   const today = new Date();
+  const currentWeatherUpdated = new Date();
 
   useEffect(() => {
     const fetchWeather = async () => {
       const results = await getWeatherData("forecast");
       const current = await getWeatherData("current");
-
+      const currentLastUpdated = new Date(current.last_updated_epoch * 1000);
+      setLastUpdated(currentLastUpdated);
       setWeatherData(results);
       setCurrentWeather(current);
-
+      //  current.last_updated_epoch;
       setLoading(false);
     };
     fetchWeather();
@@ -32,6 +34,10 @@ const Weather = ({ showWeather, setShowWeather }) => {
     if (e.key === "Enter" || e.key === "Escape") {
       setShowWeather(false);
     }
+  };
+
+  const epochToDate = (epoch) => {
+    return new Date(epoch * 1000);
   };
 
   if (loading) {
@@ -70,7 +76,7 @@ const Weather = ({ showWeather, setShowWeather }) => {
             transition={{ ease: "easeOut", duration: 0.25 }}
             exit={{ y: 1500, opacity: 0 }}
           >
-            <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
+            <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
               <div className="bg-sky-700 rounded-t-2xl pb-4">
                 <button
                   className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
@@ -99,46 +105,57 @@ const Weather = ({ showWeather, setShowWeather }) => {
               <div className="p-2 flex items-center w-full">
                 <div>
                   {!loading && (
-                    <img
-                      src={currentWeather.condition.icon.replace(
-                        "64x64",
-                        "128x128"
-                      )}
-                    />
+                    <div>
+                      <img
+                        className="hidden sm:block"
+                        src={currentWeather.condition.icon.replace(
+                          "64x64",
+                          "128x128"
+                        )}
+                      />
+                      <img
+                        className="block sm:hidden"
+                        src={currentWeather.condition.icon}
+                      />
+                    </div>
                   )}
                 </div>
-                <div className="text-5xl">
+                <div className="text-3xl sm:text-5xl">
                   {!loading && currentWeather.temp_c}&#176;
-                  <span className="block text-sm py-2">
+                  <span className="block text-sm">
                     {currentWeather.condition.text}
                   </span>
                 </div>
-                <div className="flex flex-col grow items-end justify-start text-sm px-4">
-                  <div>
+                <div className="flex flex-col grow items-center justify-start text-sm px-4">
+                  <div className="text-center">
                     Precipitation:{" "}
                     <span className="font-semibold">
                       {currentWeather.precip_mm}mm
                     </span>
                   </div>
-                  <div>
+                  <div className="text-center">
                     Humidity:{" "}
                     <span className="font-semibold">
                       {currentWeather.humidity}
                     </span>
                   </div>
-                  <div>
+                  <div className="text-center">
                     Pressure:{" "}
                     <span className="font-semibold">
                       {currentWeather.pressure_mb}mb
                     </span>
                   </div>
-                  <div>
+                  <div className="text-center">
                     Wind:{" "}
                     <span className="font-semibold">
                       {currentWeather.wind_kph} km/h {currentWeather.wind_dir}
                     </span>
                   </div>
                 </div>
+              </div>
+              <div>{}</div>
+              <div className="block text-center font-normal text-slate-400">
+                {}
               </div>
               <div className="flex pt-4 border-t-2 border-slate-300">
                 {weatherData.map((weather, index) => {
