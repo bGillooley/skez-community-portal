@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
+//import { useVariants, spring } from "@/lib/cursor-variants";
 import { GetStaticProps } from "next";
 import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
@@ -9,7 +10,9 @@ import { useRouter } from "next/router";
 import themeImg from "../public/static/skez-tide.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
+//import { motion } from "framer-motion";
 import { MdWaves, MdTrain } from "react-icons/md";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 const inter = Inter({ subsets: ["latin"] });
 
 const Trains = dynamic(() => import("@/components/Trains"), {
@@ -18,6 +21,10 @@ const Trains = dynamic(() => import("@/components/Trains"), {
 
 const Tides = dynamic(() => import("@/components/Tides"), {
   loading: () => <div className="fixed invisible">Loading Tide Times...</div>,
+});
+
+const Weather = dynamic(() => import("@/components/Weather"), {
+  loading: () => <div className="fixed invisible">Loading Weather Data...</div>,
 });
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -50,8 +57,16 @@ type Props = {
 };
 
 const Home: React.FC<Props> = (props) => {
+  const [cursorText, setCursorText] = useState("");
+  const [cursorVariant, setCursorVariant] = useState("default");
+
+  const ref = useRef(null);
+
+  // const variants = useVariants(ref);
+
   const [showTrains, setShowTrains] = useState(false);
   const [showTides, setShowTides] = useState(false);
+  const [showWeather, setShowWeather] = useState(false);
   const router = useRouter();
   const handleEventsClick = (e) => {
     e.preventDefault();
@@ -64,7 +79,7 @@ const Home: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="relative bg-black">
+    <div className="relative bg-black" ref={ref}>
       <Head>
         <title>Skez Life</title>
         <meta name="description" content="Skerries Community App" />
@@ -72,6 +87,17 @@ const Home: React.FC<Props> = (props) => {
         <meta name="robots" content="noindex"></meta>
       </Head>
       <Header />
+
+      {/*
+      <motion.div
+        variants={variants}
+        className="fixed z-50 flex justify-center content-center top-0 left-0 w-[10px] h-[10px] bg-slate-400 rounded-[200px] pointer-events-none"
+        animate={cursorVariant}
+        transition={spring}
+      >
+        <span className="cursorText">{cursorText}</span>
+      </motion.div>
+      */}
       <div className="relative lg:fixed lg:h-full lg:w-full" role="contentinfo">
         <Image
           className="z-0 absolute w-full h-full object-cover"
@@ -135,7 +161,7 @@ const Home: React.FC<Props> = (props) => {
                     className="inline-flex mb-2 md:mb-0 w-full md:w-auto cursor-pointer justify-center rounded-lg text-sm font-semibold py-2 px-4 bg-sky-700 text-white hover:bg-sky-900"
                     onClick={handleEventsClick}
                     onKeyUp={handleEventsKeyUp}
-                    tabIndex="2"
+                    tabIndex="0"
                   >
                     VIEW ALL EVENTS
                   </button>
@@ -157,7 +183,7 @@ const Home: React.FC<Props> = (props) => {
                       e.key === "Enter" && setShowTrains(true);
                       console.log("Key up ", e.key);
                     }}
-                    tabIndex="3"
+                    tabIndex="0"
                   >
                     <div className="flex justify-center text-4xl text-white">
                       <MdTrain />
@@ -175,7 +201,7 @@ const Home: React.FC<Props> = (props) => {
                       e.key === "Enter" && setShowTides(true);
                       console.log("Key up ", e.key);
                     }}
-                    tabIndex="4"
+                    tabIndex="0"
                   >
                     <div className="flex justify-center text-4xl text-white">
                       <MdWaves />
@@ -186,7 +212,24 @@ const Home: React.FC<Props> = (props) => {
                   </div>
                 </div>
                 <div className="mb-2 lg:mb-0 row-span-1 col-start-3 row-start-6">
-                  <div className="relative cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"></div>
+                  <div
+                    className="relative flex flex-col py-2 justify-center content-center cursor-pointer rounded-md w-full h-full bg-sky-700 hover:bg-sky-800"
+                    onClick={() => {
+                      setShowWeather(true);
+                    }}
+                    onKeyUp={(e) => {
+                      e.key === "Enter" && setShowTides(true);
+                      console.log("Key up ", e.key);
+                    }}
+                    tabIndex="0"
+                  >
+                    <div className="flex justify-center text-4xl text-white">
+                      <TiWeatherPartlySunny />
+                    </div>
+                    <div className="flex justify-center text-white">
+                      WEATHER
+                    </div>
+                  </div>
                 </div>
                 <div className="row-span-3 col-start-4 hidden lg:block  row-start-4">
                   <div className="flex flex-col place-content-end relative rounded-md w-full h-full bg-slate-500">
@@ -206,6 +249,13 @@ const Home: React.FC<Props> = (props) => {
         <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
       )}
       {showTides && <Tides showTides={showTides} setShowTides={setShowTides} />}
+      {showWeather && (
+        <Weather
+          showWeather={showWeather}
+          setShowWeather={setShowWeather}
+          weatherData
+        />
+      )}
     </div>
   );
 };

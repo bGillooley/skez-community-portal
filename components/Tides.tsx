@@ -24,6 +24,17 @@ const Tides = ({ showTides, setShowTides }) => {
     getTides();
   }, []);
 
+  const handleHideTidesClick = (e) => {
+    e.preventDefault();
+    setShowTides(false);
+  };
+
+  const handleHideTidesKeyUp = (e) => {
+    if (e.key === "Enter" || e.key === "Escape") {
+      setShowTides(false);
+    }
+  };
+
   if (!initialRenderComplete) {
     return null; // this is because a mismatch occurs when getting date from server rather than client
   } else {
@@ -56,7 +67,7 @@ const Tides = ({ showTides, setShowTides }) => {
         <div className="fixed left-0 top-0 w-full h-full z-50">
           <motion.div
             className="absolute w-full h-full bg-black opacity-50 z-10"
-            onClick={() => setShowTides(false)}
+            onClick={handleHideTidesClick}
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.75 }}
             exit={{ opacity: 0 }}
@@ -72,8 +83,12 @@ const Tides = ({ showTides, setShowTides }) => {
               <div className="w-full pt-14  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
                 <div className="bg-sky-700 rounded-t-2xl pb-4">
                   <button
-                    className="flex flex-col place-content-center mb-2 pt-2 cursor-pointer z-50"
-                    onClick={() => setShowTides(false)}
+                    className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
+                    onClick={handleHideTidesClick}
+                    onKeyUp={handleHideTidesKeyUp}
+                    aria-label="close"
+                    tabIndex={0}
+                    autoFocus
                   >
                     <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
                       <MdArrowForwardIos />

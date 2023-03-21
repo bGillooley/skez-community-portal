@@ -42,7 +42,7 @@ const Events: React.FC<Props> = (props) => {
     return array.filter((el) => el.category.toLowerCase().includes(filter));
   };
 
-  const handleSelectFilter = (filter) => {
+  const handleSelectFilterKeyUp = (filter) => {
     setFilter(filter);
   };
 
@@ -51,6 +51,11 @@ const Events: React.FC<Props> = (props) => {
   const handleBackClick = (e) => {
     e.preventDefault();
     router.push("/");
+  };
+  const handleBackKeyUp = (e) => {
+    if (e.key === "Enter") {
+      router.push("/");
+    }
   };
 
   return (
@@ -63,7 +68,7 @@ const Events: React.FC<Props> = (props) => {
       </Head>
 
       <div className="absolute z-50 top-4 left-4 md:top-8 md:left-8 text-3xl text-slate-100">
-        <a href="/" onClick={handleBackClick}>
+        <a href="/" onClick={handleBackClick} onKeyUp={handleBackKeyUp}>
           <MdArrowBackIos />
         </a>
       </div>
@@ -134,6 +139,12 @@ const Events: React.FC<Props> = (props) => {
                     <li
                       className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
                       onClick={() => setFilter("")}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          setFilter("");
+                        }
+                      }}
+                      tabIndex="0"
                     >
                       <div className="font-semibold">
                         <span
@@ -151,6 +162,12 @@ const Events: React.FC<Props> = (props) => {
                     <li
                       className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
                       onClick={() => setFilter("culture")}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          setFilter("culture");
+                        }
+                      }}
+                      tabIndex="0"
                     >
                       <div className="font-semibold">
                         <span
@@ -168,6 +185,12 @@ const Events: React.FC<Props> = (props) => {
                     <li
                       className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
                       onClick={() => setFilter("music")}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          setFilter("music");
+                        }
+                      }}
+                      tabIndex="0"
                     >
                       <div className="font-semibold">
                         <span
@@ -185,6 +208,12 @@ const Events: React.FC<Props> = (props) => {
                     <li
                       className="flex justify-between px-4 py-2 border-b border-slate-400 hover:bg-slate-100 cursor-pointer"
                       onClick={() => setFilter("sport")}
+                      onKeyUp={(e) => {
+                        if (e.key === "Enter") {
+                          setFilter("music");
+                        }
+                      }}
+                      tabIndex="0"
                     >
                       <div className="font-semibold">
                         <span
