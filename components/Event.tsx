@@ -198,7 +198,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                         {event.content}
                       </div>
                     </div>
-                    <div className="flex place-content-center pt-4 md:pt-0 md:place-content-start">
+                    <div className="flex place-content-center m-2 pt-4 md:pt-0 md:place-content-start">
                       <add-to-calendar-button
                         name={event.title}
                         description={event.content}
@@ -236,7 +236,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                           value={event.address}
                         />
                         <input
-                          className="inline-flex mb-2 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-4 py-2 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                          className="inline-flex mb-4 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-4 py-2 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
                           type="submit"
                           value="View Map / Get directions"
                           tabIndex={0}
@@ -245,7 +245,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                     </div>
                   </div>
                 </div>
-                <div className="p-1 bg-sky-700 text-center rounded-b-lg  border-t-2 border-slate-100 block"></div>
+                <div className="hidden sm:block p-1 bg-sky-700 text-center rounded-b-lg mx-1"></div>
               </motion.div>
             </div>
           </div>

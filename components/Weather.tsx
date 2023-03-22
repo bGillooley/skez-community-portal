@@ -92,9 +92,9 @@ const Weather = ({ showWeather, setShowWeather }) => {
               <div className="bg-white">
                 <div className="text-center font-semibold py-4">CURRENTLY</div>
                 <div className="grid grid-cols-6 sm:grid-cols-5">
-                  <div className="-translate-y-2 sm:-translate-y-8 col-span-2 sm:col-span-2">
+                  <div className="-translate-y-2 sm:-translate-y-6 col-span-2 sm:col-span-2">
                     {!loading && (
-                      <div class="flex place-content-end">
+                      <div className="flex place-content-end">
                         <img
                           className="hidden sm:block"
                           src={currentWeather.condition.icon.replace(
@@ -184,8 +184,18 @@ const Weather = ({ showWeather, setShowWeather }) => {
                   );
                 })}
               </div>
+              <div className="relative block text-center font-light text-sm text-slate-500 pt-8">
+                Powered by{" "}
+                <a
+                  href="https://www.weatherapi.com/"
+                  title="Free Weather API"
+                  target="_blank"
+                >
+                  WeatherAPI.com
+                </a>
+              </div>
             </div>
-            <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
+            <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl mx-1"></div>
           </motion.div>
         </div>
       </div>

@@ -158,7 +158,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   </table>
                 </div>
               </div>
-              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-50 ">
+              <div className="py-4 pb-96 md:pb-4 text-center bg-slate-100 border-t-2 border-slate-300">
                 <button
                   className="inline-flex cursor-pointer justify-center rounded-lg text-sm font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
                   onClick={getTrains}
@@ -173,7 +173,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   VIEW ON IRISH RAIL
                 </a>
               </div>
-              <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
+              <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl mx-1"></div>
             </motion.div>
           </div>
         </div>
