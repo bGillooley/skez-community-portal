@@ -19,7 +19,7 @@ const Trains = dynamic(() => import("@/components/Trains"), {
   loading: () => <div className="fixed invisible">Loading Train Times...</div>,
 });
 
-const Tides = dynamic(() => import("@/components/Tides"), {
+const Tides = dynamic(() => import("@/components/tides/Tides"), {
   loading: () => <div className="fixed invisible">Loading Tide Times...</div>,
 });
 

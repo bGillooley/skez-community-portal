@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* TIDE COMPONENT */
+
+.tidal-state {
+  font-weight: bold;
+}
+#tideDay0 ul,
+#tideDay1 ul,
+#tideDay2 ul {
+  position: relative;
+  width: 100%;
+  padding: 0 1rem 0.5rem 1rem;
+}
+#tideDay0 li,
+#tideDay1 li,
+#tideDay2 li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+}
+#tideDay0 li {
+  font-size: 24px;
+}
+#tideDay0 li span:first-child,
+#tideDay1 li span:first-child,
+#tideDay2 li span:first-child {
+  position: absolute;
+  font-size: 14px;
+  left: 0.25rem;
+}
+#tideDay0 li span:last-child,
+#tideDay1 li span:last-child,
+#tideDay2 li span:last-child {
+  position: absolute;
+  right: 0.25rem;
+  font-size: 14px;
+}
+li.highTide,
+li.lowTide {
+  padding: 0.25rem;
+}
+li.highTide {
+  background: #f1f5f9;
+}

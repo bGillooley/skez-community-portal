@@ -15,6 +15,7 @@ const Tides = ({ showTides, setShowTides }) => {
         const tideStuff = JSON.parse(JSON.stringify(data));
         setTideData(tideStuff);
         setLoading(false);
+        console.log("This stuff...", tideStuff);
       });
     console.log("It ran..");
   }
@@ -102,45 +103,33 @@ const Tides = ({ showTides, setShowTides }) => {
                   </h2>
                 </div>
               </div>
-              <div className="bg-slate-100">
+              <div className="bg-white pb-96 md:pb-2">
                 <div className="">
-                  <table className="w-full border-separate border-spacing-2">
-                    <thead>
-                      <tr>
-                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
-                          {dayToday.toLocaleString("en-En", {
-                            weekday: "long",
-                          })}
-                        </th>
-                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
-                          {dayTomorrow.toLocaleString("en-En", {
-                            weekday: "long",
-                          })}
-                        </th>
-                        <th className="text-center uppercase font-medium text-slate-500 rounded-md bg-white p-1 border-slate-200 border">
-                          {dayAfterTomorrow.toLocaleString("en-En", {
-                            weekday: "long",
-                          })}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        {tideData.slice(0, 3).map((elm, i) => {
-                          return (
-                            <td
-                              key={i}
-                              className="align-top pr-2 bg-white p-2 text-center border-slate-200 border rounded-md"
-                            >
-                              <div
-                                dangerouslySetInnerHTML={{ __html: elm.tides }}
-                              />
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    </tbody>
-                  </table>
+                  {tideData.slice(0, 2).map((elm, i) => {
+                    let billy = elm.tides;
+                    let id = "tideDay" + i;
+                    billy = billy.replace(/<\/?strong>/g, "");
+                    billy = billy.replace(/(<br ?\/?>)/g, "<span>");
+                    billy = billy.replace(/(<\/li>)/g, "</span></li>");
+
+                    console.log("THis is...", billy);
+                    return (
+                      <div key={i} id={id} className="">
+                        {i === 0 && (
+                          <div className="text-center text-lg font-semibold pt-4 pb-1">
+                            TODAY
+                          </div>
+                        )}
+                        {i === 1 && (
+                          <div className="text-center font-semibold pt-4 pb-2">
+                            TOMORROW
+                          </div>
+                        )}
+
+                        <div dangerouslySetInnerHTML={{ __html: billy }} />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
