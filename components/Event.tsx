@@ -154,8 +154,8 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 transition={{ ease: "easeOut", duration: 0.25 }}
                 exit={{ y: 500, opacity: 0 }}
               >
-                <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                  <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0 text-center">
+                <div className="w-full pt-0  md:p-0 text-white">
+                  <div className="bg-sky-700 rounded-t-lg pb-4 md:pb-0 md:mx-1 text-center">
                     <button
                       className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
                       onClick={handleHideModalClick}
@@ -175,7 +175,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                     <h2 className="text-center mx-2 text-xl md:text-2xl">
                       {event.title}
                     </h2>
-                    <div className="text-center  text-md md:pb-2 text-slate-200">
+                    <div className="text-center  text-md md:pb-4 text-slate-200">
                       {formatDateLong(event.eventDate)} | {event.eventTime}
                     </div>
                   </div>

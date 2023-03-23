@@ -75,8 +75,8 @@ const Trains = ({ showTrains, setShowTrains }) => {
                 transition={{ ease: "easeOut", duration: 0.25 }}
                 exit={{ y: 500, opacity: 0 }}
               >
-                <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                  <div className="bg-sky-700 rounded-t-md pb-4">
+                <div className="w-full pt-0  md:p-0 text-white">
+                  <div className="bg-sky-700 rounded-t-lg pb-4 md:mx-1">
                     <button
                       className="flex w-full flex-col place-content-center cursor-pointer mb-2 pt-2  z-50"
                       onClick={handleHideTrainsClick}

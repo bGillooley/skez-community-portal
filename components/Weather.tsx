@@ -69,8 +69,8 @@ const Weather = ({ showWeather, setShowWeather }) => {
               transition={{ ease: "easeOut", duration: 0.25 }}
               exit={{ y: 500, opacity: 0 }}
             >
-              <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                <div className="bg-sky-700 rounded-t-2xl pb-4">
+              <div className="w-full pt-0  md:p-0 text-white">
+                <div className="bg-sky-700 rounded-t-lg pb-4 md:mx-1">
                   <button
                     className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
                     onClick={handleHideWeatherClick}
@@ -153,7 +153,7 @@ const Weather = ({ showWeather, setShowWeather }) => {
                     </div>
                   </div>
 
-                  <div className="block uppercase text-center py-4 text-xs font-normal text-slate-400">
+                  <div className="block uppercase text-center pb-4 text-xs font-normal text-slate-400">
                     Last update: {currentWeather.last_updated.split(" ")[1]}
                   </div>
                 </div>

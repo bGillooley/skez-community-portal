@@ -15,6 +15,12 @@ import { MdWaves, MdTrain } from "react-icons/md";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 const inter = Inter({ subsets: ["latin"] });
 
+function addHours(date, hours) {
+  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+
+  return date;
+}
+
 const Trains = dynamic(() => import("@/components/Trains"), {
   loading: () => <div className="fixed invisible">Loading Train Times...</div>,
 });
@@ -33,7 +39,7 @@ export const getStaticProps: GetStaticProps = async () => {
     where: {
       published: true,
       eventDate: {
-        gte: new Date(),
+        gte: addHours(new Date(), -6),
       },
     },
     include: {
@@ -81,7 +87,7 @@ const Home: React.FC<Props> = (props) => {
   return (
     <div className="relative bg-black" ref={ref}>
       <Head>
-        <title>Skez Life</title>
+        <title>SkezLife</title>
         <meta name="description" content="Skerries Community App" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="noindex"></meta>

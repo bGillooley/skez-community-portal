@@ -78,14 +78,14 @@ const Tides = ({ showTides, setShowTides }) => {
             ></motion.div>
             <div className="relative pointer-events-none flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
               <motion.div
-                className="w-full md:w-[520px] h-auto pointer-events-auto"
+                className="relative w-full md:w-[520px] h-auto pointer-events-auto"
                 initial={{ y: 500, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.25 }}
                 exit={{ y: 500, opacity: 0 }}
               >
-                <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
-                  <div className="bg-sky-700 rounded-t-2xl pb-4">
+                <div className="relative w-full pt-0  md:p-0 text-white">
+                  <div className="bg-sky-700 rounded-t-lg pb-4 md:mx-1">
                     <button
                       className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
                       onClick={handleHideTidesClick}
@@ -135,7 +135,7 @@ const Tides = ({ showTides, setShowTides }) => {
                     })}
                   </div>
                 </div>
-                <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl"></div>
+                <div className="hidden md:block bg-sky-700 p-1 rounded-b-2xl mx-1"></div>
               </motion.div>
             </div>
           </div>
