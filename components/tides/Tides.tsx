@@ -57,9 +57,7 @@ const Tides = ({ showTides, setShowTides }) => {
                 exit={{ opacity: 0 }}
               ></motion.div>
               <div className="w-full h-full  text-white flex justify-center items-center">
-                <div className="relative z-20 text-3xl">
-                  Loading you prick...
-                </div>
+                <div className="relative z-20 text-3xl">Loading...</div>
               </div>
             </div>
           )}
