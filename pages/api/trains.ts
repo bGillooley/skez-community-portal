@@ -33,6 +33,7 @@ export default async function handler(
                 .replace(/\s*[\[{(].*?[)}\]]\s*/g, ""),
               eta: $(elm).find("td:nth-child(4)").text().trim(),
               duein: $(elm).find("td:nth-child(5)").text().trim(),
+              info: $(elm).find("td:nth-child(6)").text().trim(),
             };
             trains["details" + (i + 1)].push(obj);
           });
