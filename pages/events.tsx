@@ -11,12 +11,18 @@ import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
 const inter = Inter({ subsets: ["latin"] });
 
+function addHours(date, hours) {
+  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+
+  return date;
+}
+
 export const getStaticProps: GetStaticProps = async () => {
   let feed = await prisma.event.findMany({
     where: {
       published: true,
       eventDate: {
-        gte: new Date(),
+        gte: addHours(new Date(), -6),
       },
     },
     orderBy: {
