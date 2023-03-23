@@ -99,7 +99,7 @@ const Events: React.FC<Props> = (props) => {
             <div className="inline-block px-2">Filter: </div>
             <div className="inline-block px-2" onClick={() => setFilter("")}>
               <span className={filter === "" ? "font-bold" : "font-normal"}>
-                All Events
+                All
               </span>
             </div>
             <div
