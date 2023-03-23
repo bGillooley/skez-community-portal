@@ -106,7 +106,7 @@ const Home: React.FC<Props> = (props) => {
           loading="eager"
           alt="Skerries Rules"
         />
-        <div className="absolute z-10  w-full h-full bg-gradient-to-b from-transparent to-black"></div>
+        <div className="absolute z-10  w-full h-full bg-gradient-to-t from-black via-transparent to-black"></div>
         <div className="relative pt-16 pb-6 px-6 z-20 lg:hidden">
           <h1 className="text-6xl 2xl:text-8xl text-slate-100 text-center">
             SkezLife

@@ -5,7 +5,7 @@ import { GetStaticProps } from "next";
 import prisma from "../lib/prisma";
 import Event, { EventProps } from "../components/Event";
 import Image from "next/image";
-import themeImg from "../public/static/skerries-windmill.jpg";
+import themeImg from "../public/static/skerries-drone-view.jpg";
 import { useRouter } from "next/router";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
@@ -72,17 +72,21 @@ const Events: React.FC<Props> = (props) => {
           <MdArrowBackIos />
         </a>
       </div>
-      <div className="relative pb-4">
+
+      <div className="fixed w-screen h-screen">
         <Image
-          className="z-0 absolute w-full h-full object-cover"
+          className="brightness-50 z-0 absolute w-full h-full object-cover"
           src={themeImg}
           quality={50}
           loading="eager"
           alt="Skerries Rules"
           priority
         />
-        <div className="absolute z-10  w-full h-full bg-gradient-to-b from-transparent to-black"></div>
-        <div className="relative pt-36 pb-4 md:pb-8 px-6 z-20">
+        <div className="absolute z-10  w-full h-full bg-gradient-to-t from-black via-transparent to-black"></div>
+      </div>
+
+      <div className="relative z-20">
+        <div className="relative pt-24 pb-4 md:pb-8 px-6">
           <h1 className="text-3xl md:text-6xl text-slate-100 text-center">
             What's On in Skerries
           </h1>
@@ -116,8 +120,8 @@ const Events: React.FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <div className="relative w-full pb-16 bg-slate-50">
-        <div className="relative -mt-4 container max-w-5xl mx-auto z-50">
+      <div className="relative w-full pb-16 z-20">
+        <div className="relative container max-w-5xl mx-auto z-50">
           <div className="flex flex-col md:flex-row md:space-between px-4">
             <main className="grow">
               {filtered.map((event) => (
