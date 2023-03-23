@@ -48,17 +48,21 @@ const Tides = ({ showTides, setShowTides }) => {
     if (loading) {
       return (
         <AnimatePresence>
-          <div className="fixed left-0 top-0 w-full h-full z-50">
-            <motion.div
-              className="fixed w-full h-full bg-black opacity-50 z-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.75 }}
-              exit={{ opacity: 0 }}
-            ></motion.div>
-            <div className="w-full h-full  text-white flex justify-center items-center">
-              <div className="relative z-20 text-3xl">Loading you prick...</div>
+          {showTides && (
+            <div className="fixed left-0 top-0 w-full h-full z-50">
+              <motion.div
+                className="fixed w-full h-full bg-black opacity-50 z-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.75 }}
+                exit={{ opacity: 0 }}
+              ></motion.div>
+              <div className="w-full h-full  text-white flex justify-center items-center">
+                <div className="relative z-20 text-3xl">
+                  Loading you prick...
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </AnimatePresence>
       );
     }
@@ -77,10 +81,10 @@ const Tides = ({ showTides, setShowTides }) => {
             <div className="relative pointer-events-none flex md:w-screen md:h-screen md:items-center md:justify-center z-50">
               <motion.div
                 className="w-full md:w-[520px] h-auto pointer-events-auto"
-                initial={{ y: 1500, opacity: 0 }}
+                initial={{ y: 500, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.25 }}
-                exit={{ y: 15, opacity: 0 }}
+                exit={{ y: 500, opacity: 0 }}
               >
                 <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
                   <div className="bg-sky-700 rounded-t-2xl pb-4">

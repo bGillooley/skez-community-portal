@@ -245,13 +245,12 @@ const Home: React.FC<Props> = (props) => {
           </div>
         </div>
       </main>
-      {showTrains && (
-        <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
-      )}
+
+      <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
+
       <Tides showTides={showTides} setShowTides={setShowTides} />
-      {showWeather && (
-        <Weather showWeather={showWeather} setShowWeather={setShowWeather} />
-      )}
+
+      <Weather showWeather={showWeather} setShowWeather={setShowWeather} />
     </div>
   );
 };
