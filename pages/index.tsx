@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import themeImg from "../public/static/skez-tide.jpg";
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
-//import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MdWaves, MdTrain } from "react-icons/md";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 const inter = Inter({ subsets: ["latin"] });
@@ -248,13 +248,9 @@ const Home: React.FC<Props> = (props) => {
       {showTrains && (
         <Trains showTrains={showTrains} setShowTrains={setShowTrains} />
       )}
-      {showTides && <Tides showTides={showTides} setShowTides={setShowTides} />}
+      <Tides showTides={showTides} setShowTides={setShowTides} />
       {showWeather && (
-        <Weather
-          showWeather={showWeather}
-          setShowWeather={setShowWeather}
-          weatherData
-        />
+        <Weather showWeather={showWeather} setShowWeather={setShowWeather} />
       )}
     </div>
   );

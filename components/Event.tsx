@@ -149,10 +149,10 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
             <div className="flex md:w-screen md:h-screen md:items-center md:justify-center">
               <motion.div
                 className="relative w-full md:w-[680px] h-auto z-50 rounded-lg"
-                initial={{ y: 1500, opacity: 0 }}
+                initial={{ y: 500, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.25 }}
-                exit={{ y: 1500, opacity: 0 }}
+                exit={{ y: 500, opacity: 0 }}
               >
                 <div className="w-full pt-0  md:p-0  md:bg-sky-700 text-white md:rounded-t-lg">
                   <div className="bg-sky-700 rounded-t-md pb-4 md:pb-0 text-center">
