@@ -32,6 +32,8 @@ model Event {
   eventDate DateTime
   eventTime String?
   venue     String
+  linkUrl   String?
+  linkDesc String?
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?

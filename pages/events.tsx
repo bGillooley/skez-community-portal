@@ -81,7 +81,7 @@ const Events: React.FC<Props> = (props) => {
 
       <div className="relative md:h-full md:w-full overflow-visible">
         <Image
-          className="brightness-50 z-0 absolute w-full h-full object-cover"
+          className="brightness-40 z-0 absolute w-full h-full object-cover"
           src={themeImg}
           quality={50}
           loading="eager"
@@ -136,7 +136,7 @@ const Events: React.FC<Props> = (props) => {
         </div>
       </div>
 
-      <div className="relative w-full pb-16 z-20">
+      <div className="relative w-full pb-16 z-50">
         <div className="relative container max-w-5xl mx-auto z-50">
           <div className="flex flex-col md:flex-row md:space-between px-4">
             <main className="grow">
@@ -147,7 +147,7 @@ const Events: React.FC<Props> = (props) => {
               ))}
             </main>
             <nav role="navigation" aria-labelledby="filter-by-category">
-              <div className="hidden md:block relative  md:w-[380px] drop-shadow">
+              <div className="hidden md:block  md:w-[380px] drop-shadow sticky top-0">
                 <div className="w-full p-4 mb-2 ml-2 bg-white rounded-md">
                   <h2
                     id="filter-by-category"

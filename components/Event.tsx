@@ -71,6 +71,8 @@ export type EventProps = {
   content: string;
   address: string;
   venue: string;
+  linkUrl?: string;
+  linkDesc?: string;
   eventDate: string;
   eventTime: string;
   published: boolean;
@@ -155,27 +157,28 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 exit={{ y: 500, opacity: 0 }}
               >
                 <div className="w-full pt-0  md:p-0 text-white">
-                  <div className="bg-sky-700 rounded-t-lg pb-4 md:pb-0 md:mx-1 text-center">
+                  <div className="bg-sky-700 rounded-t-lg p-4 pt-6 md:mx-1">
                     <button
-                      className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
+                      className="flex absolute right-6 top-2 flex-col place-content-center mb-2  z-50"
                       onClick={handleHideModalClick}
                       onKeyUp={handleHideModalKeyUp}
                       aria-label="close"
                       tabIndex={0}
                       autoFocus
                     >
-                      <div className="rotate-90 mx-auto origin-center text-3xl text-slate-300">
+                      <div className="rotate-90 mx-auto origin-center text-3xl text-slate-400 hover:text-slate-200">
                         <MdArrowForwardIos />
                       </div>
-                      <div className="w-full text-slate-400 text-xs text-center">
-                        close
-                      </div>
+                      <div className="w-full text-slate-400 text-xs">close</div>
                     </button>
-
-                    <h2 className="text-center mx-2 text-xl md:text-2xl">
+                    <div className="mt-2 text-xs font-semibold uppercase text-slate-300 tracking-wider">
+                      {event.category}
+                    </div>
+                    <h2 className=" text-2xl md:text-2xl pr-14 pb-1">
                       {event.title}
                     </h2>
-                    <div className="text-center  text-md md:pb-4 text-slate-200">
+
+                    <div className="text-xs font-semibold uppercase text-slate-300 tracking-wider">
                       {formatDateLong(event.eventDate)} | {event.eventTime}
                     </div>
                   </div>
@@ -183,20 +186,33 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 <div className="relative flex flex-col  md:flex-row bg-white">
                   <div className="md:flex md:flex-col justify-between  md:flex-1">
                     <div className="px-4 py-4">
-                      <div className="md:text-left pt-4 md:pt-0 text-lg">
-                        <div className="text-xs font-semibold text-slate-500">
+                      <div className="md:text-left md:pt-0 text-lg">
+                        <div className="text-xs tracking-wider font-semibold text-slate-400">
                           VENUE
                         </div>
                         {event.venue}
                       </div>
-                      <div className="md:text-left text-xs text-slate-500">
+                      <div className="md:text-left text-xs text-slate-400">
                         {event.address}
                       </div>
 
-                      <div className=" mt-4 w-[50px] h-[4px] bg-sky-900"></div>
-                      <div className="text-left md:text-left md:px-0 text-md pt-1 text-slate-500">
+                      <div className=" mt-4 mb-4 w-[50px] h-[4px] bg-sky-900"></div>
+
+                      <div className="text-xs tracking-wider font-semibold text-slate-400">
+                        DESCRIPTION
+                      </div>
+                      <div className="text-left  md:text-left md:px-0 text-md pt-1 text-slate-500">
                         {event.content}
                       </div>
+                      {event.linkUrl !== null && (
+                        <a
+                          className="inline-block cursor-pointer justify-center rounded-lg text-xs font-semibold mt-4 text-slate-700 py-2.5 px-4 bg-slate-100 hover:bg-slate-200"
+                          href={event.linkUrl}
+                          target="_blank"
+                        >
+                          {event.linkDesc}
+                        </a>
+                      )}
                     </div>
                     <div className="flex place-content-center m-2 pt-4 md:pt-0 md:place-content-start">
                       <add-to-calendar-button
@@ -236,7 +252,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                           value={event.address}
                         />
                         <input
-                          className="inline-flex mb-4 w-full justify-center cursor-pointer rounded-md border border-transparent bg-sky-600 px-4 py-2 text-white shadow-sm hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                          className="inline-flex text-xs font-semibold mb-4 w-full justify-center cursor-pointer rounded-md border border-transparent bg-slate-800 px-4 py-2 text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-xs"
                           type="submit"
                           value="View Map / Get directions"
                           tabIndex={0}

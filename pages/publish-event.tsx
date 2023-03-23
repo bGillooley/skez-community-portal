@@ -55,6 +55,8 @@ const duplicateEvent = async (event) => {
       address: event.address,
       eventDate: event.eventDate,
       eventTime: event.eventTime,
+      linkUrl: event.linkUrl,
+      linkDesc: event.linkUrl,
     };
     await fetch("/api/event/duplicate", {
       method: "POST",
@@ -114,54 +116,56 @@ const Drafts: React.FC<Props> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="mx-4 lg:mx-auto mt-48 max-w-5xl">
-        <h1 className="text-4xl pb-8">All Events</h1>
-        <main className="lg:grid lg:grid-cols-3 lg:gap-4">
-          {props.drafts.map((event) => (
-            <div
-              key={event.id}
-              className="mb-4 lg:mb-0 rounded border border-gray-100 bg-slate-50"
-            >
-              <Event event={event} />
-              <div className="p-2 shadow-inner">
-                {!event.published && (
-                  <button
-                    className="mb-2 lg:mb-0 mr-2 inline-flex w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700  focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                    onClick={() => publishPost(event.id)}
-                  >
-                    Publish
-                  </button>
-                )}
+      <div className="bg-slate-100">
+        <div className="mx-4 lg:mx-auto mt-48 max-w-5xl">
+          <h1 className="text-4xl pb-8">All Events</h1>
+          <main className="lg:grid lg:grid-cols-3 lg:gap-4">
+            {props.drafts.map((event) => (
+              <div
+                key={event.id}
+                className="mb-4 lg:mb-0 rounded border border-gray-100 bg-slate-50"
+              >
+                <Event event={event} />
+                <div className="p-2 shadow-inner">
+                  {!event.published && (
+                    <button
+                      className="mb-2 lg:mb-0 mr-2 inline-flex w-full justify-center rounded-md border border-transparent bg-sky-600 px-2 py-1 text-white shadow-sm hover:bg-sky-700  focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                      onClick={() => publishPost(event.id)}
+                    >
+                      Publish
+                    </button>
+                  )}
 
-                <button
-                  className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => deletePost(event.id)}
-                >
-                  Delete
-                </button>
-                <Link
-                  className="mb-2 lg:mb-0 inline-flex w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  href={{
-                    pathname: "/update-event",
-                    query: event,
-                  }}
-                >
-                  Update
-                </Link>
-                <button
-                  className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => duplicateEvent(event)}
-                >
-                  Duplicate
-                </button>
+                  <button
+                    className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    onClick={() => deletePost(event.id)}
+                  >
+                    Delete
+                  </button>
+                  <Link
+                    className="mb-2 lg:mb-0 inline-flex w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    href={{
+                      pathname: "/update-event",
+                      query: event,
+                    }}
+                  >
+                    Update
+                  </Link>
+                  <button
+                    className="inline-flex mr-2 w-full justify-center rounded-md border border-transparent bg-slate-200 px-2 py-1 text-black shadow-sm hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    onClick={() => duplicateEvent(event)}
+                  >
+                    Duplicate
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </main>
-        <br />
-        <br />
-        <br />
-        <br />
+            ))}
+          </main>
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
       </div>
       <style jsx>{`
         .post {
