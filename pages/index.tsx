@@ -164,7 +164,7 @@ const Home: React.FC<Props> = (props) => {
                 ))}
                 <div className="row-start-7">
                   <button
-                    className="inline-flex mb-2 md:mb-0 w-full md:w-auto cursor-pointer justify-center rounded-lg text-sm font-semibold py-2 px-4 bg-sky-700 text-white hover:bg-sky-900"
+                    className="inline-flex mb-6 md:mb-0 w-full text-black md:w-auto cursor-pointer justify-center rounded-lg text-xs font-semibold py-2.5 px-4 bg-orange-300 hover:bg-orange-400 tracking-wider"
                     onClick={handleEventsClick}
                     onKeyUp={handleEventsKeyUp}
                     tabIndex="0"
@@ -194,7 +194,7 @@ const Home: React.FC<Props> = (props) => {
                     <div className="flex justify-center text-4xl text-white">
                       <MdTrain />
                     </div>
-                    <div className="flex justify-center text-white">
+                    <div className="flex justify-center text-white text-xs font-semibold tracking-wider">
                       TRAIN TIMES
                     </div>
                   </div>
@@ -212,7 +212,7 @@ const Home: React.FC<Props> = (props) => {
                     <div className="flex justify-center text-4xl text-white">
                       <MdWaves />
                     </div>
-                    <div className="flex justify-center text-white">
+                    <div className="flex justify-center text-white text-xs font-semibold tracking-wider">
                       TIDE TIMES
                     </div>
                   </div>
@@ -232,7 +232,7 @@ const Home: React.FC<Props> = (props) => {
                     <div className="flex justify-center text-4xl text-white">
                       <TiWeatherPartlySunny />
                     </div>
-                    <div className="flex justify-center text-white">
+                    <div className="flex justify-center  text-white text-xs font-semibold tracking-wider">
                       WEATHER
                     </div>
                   </div>

@@ -92,11 +92,13 @@ const Trains = ({ showTrains, setShowTrains }) => {
                         close
                       </div>
                     </button>
-                    <h2 className="flex items-center text-2xl pr-14">
+                    <h2 className="flex items-center text-lg md:text-2xl pr-14">
                       <div className="mr-1 text-4xl">
                         <MdTrain />
                       </div>
-                      <div>Next Trains from Skerries Station</div>
+                      <div className="font-semibold leading-tight">
+                        Next Trains from Skerries Station
+                      </div>
                     </h2>
                   </div>
                 </div>

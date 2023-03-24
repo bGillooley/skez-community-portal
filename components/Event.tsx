@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdArrowForwardIos, MdAccessTime } from "react-icons/md";
 import "add-to-calendar-button";
 const formatDate = (dateString) => {
   const timeformat = {
@@ -171,15 +171,19 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                       </div>
                       <div className="w-full text-slate-400 text-xs">close</div>
                     </button>
-                    <div className="text-xs font-semibold uppercase text-slate-300 tracking-wider">
+                    <div className="text-xs font-semibold capitalize text-slate-300 tracking-wider">
                       {event.category}
                     </div>
-                    <h2 className=" text-2xl md:text-2xl pr-14 pb-1">
+                    <h2 className="text-lg md:text-2xl font-semibold pr-14 pb-1 leading-tight">
                       {event.title}
                     </h2>
 
-                    <div className="text-xs font-semibold uppercase text-slate-300 tracking-wider">
-                      {formatDateLong(event.eventDate)} | {event.eventTime}
+                    <div className="text-xs flex font-semibold uppercase text-slate-300 tracking-wider">
+                      <div>{formatDateLong(event.eventDate)}</div>
+                      <div className="pl-2 pr-0.5 flex items-center">
+                        <MdAccessTime />
+                      </div>
+                      <div>{event.eventTime}</div>
                     </div>
                   </div>
                 </div>

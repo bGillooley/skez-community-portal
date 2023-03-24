@@ -87,11 +87,11 @@ const Weather = ({ showWeather, setShowWeather }) => {
                       close
                     </div>
                   </button>
-                  <h2 className="flex items-center text-2xl pr-14">
+                  <h2 className="flex items-center text-lg md:text-2xl pr-14">
                     <div className="mr-1 text-4xl">
                       <TiWeatherPartlySunny />
                     </div>
-                    <div>Skerries Weather</div>
+                    <div className="font-semibold">Skerries Weather</div>
                   </h2>
                 </div>
               </div>
