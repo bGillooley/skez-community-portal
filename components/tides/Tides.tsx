@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdArrowForwardIos, MdWaves } from "react-icons/md";
 
 const Tides = ({ showTides, setShowTides }) => {
   const [initialRenderComplete, setInitialRenderComplete] = useState(false);
@@ -85,9 +85,9 @@ const Tides = ({ showTides, setShowTides }) => {
                 exit={{ y: 500, opacity: 0 }}
               >
                 <div className="relative w-full pt-0  md:p-0 text-white">
-                  <div className="bg-sky-700 rounded-t-lg pb-4 md:mx-1">
+                  <div className="relative bg-sky-700 rounded-t-lg p-4 pt-6 md:mx-1">
                     <button
-                      className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
+                      className="flex absolute right-4 top-2 flex-col place-content-center mb-2  z-50"
                       onClick={handleHideTidesClick}
                       onKeyUp={handleHideTidesKeyUp}
                       aria-label="close"
@@ -101,13 +101,16 @@ const Tides = ({ showTides, setShowTides }) => {
                         close
                       </div>
                     </button>
-                    <h2 className="text-center mx-2 text-xl md:text-2xl">
-                      Skerries Tide Times
+                    <h2 className="flex items-center text-2xl pr-14">
+                      <div className="mr-1 text-4xl">
+                        <MdWaves />
+                      </div>
+                      <div>Skerries Tide Times</div>
                     </h2>
                   </div>
                 </div>
                 <div className="bg-white pb-96 md:pb-2">
-                  <div className="">
+                  <div className="p-4">
                     {tideData.slice(0, 2).map((elm, i) => {
                       let billy = elm.tides;
                       let id = "tideDay" + i;
@@ -118,18 +121,20 @@ const Tides = ({ showTides, setShowTides }) => {
                       console.log("THis is...", billy);
                       return (
                         <div key={i} id={id} className="">
-                          {i === 0 && (
-                            <div className="text-center text-lg font-semibold pt-4 pb-1">
-                              TODAY
-                            </div>
-                          )}
-                          {i === 1 && (
-                            <div className="text-center font-semibold pt-4 pb-2">
-                              TOMORROW
-                            </div>
-                          )}
+                          <div className="p-1 border-2 rounded-md mb-4">
+                            {i === 0 && (
+                              <div className="text-center text-lg font-semibold pb-1">
+                                TODAY
+                              </div>
+                            )}
+                            {i === 1 && (
+                              <div className="text-center font-semibold pb-1">
+                                TOMORROW
+                              </div>
+                            )}
 
-                          <div dangerouslySetInnerHTML={{ __html: billy }} />
+                            <div dangerouslySetInnerHTML={{ __html: billy }} />
+                          </div>
                         </div>
                       );
                     })}

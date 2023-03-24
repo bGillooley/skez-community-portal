@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdArrowForwardIos } from "react-icons/md";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 import { getWeatherData } from "@/lib/getWeather";
 
 const Weather = ({ showWeather, setShowWeather }) => {
@@ -70,9 +71,9 @@ const Weather = ({ showWeather, setShowWeather }) => {
               exit={{ y: 500, opacity: 0 }}
             >
               <div className="w-full pt-0  md:p-0 text-white">
-                <div className="bg-sky-700 rounded-t-lg pb-4 md:mx-1">
+                <div className="relative bg-sky-700 rounded-t-lg p-4 pt-6 md:mx-1">
                   <button
-                    className="flex w-full flex-col place-content-center mb-2 pt-2  z-50"
+                    className="flex absolute right-4 top-2 flex-col place-content-center mb-2  z-50"
                     onClick={handleHideWeatherClick}
                     onKeyUp={handleHideWeatherKeyUp}
                     aria-label="close"
@@ -86,8 +87,11 @@ const Weather = ({ showWeather, setShowWeather }) => {
                       close
                     </div>
                   </button>
-                  <h2 className="text-center mx-2 text-xl md:text-2xl">
-                    Skerries Weather
+                  <h2 className="flex items-center text-2xl pr-14">
+                    <div className="mr-1 text-4xl">
+                      <TiWeatherPartlySunny />
+                    </div>
+                    <div>Skerries Weather</div>
                   </h2>
                 </div>
               </div>

@@ -78,7 +78,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                 <div className="w-full pt-0  md:p-0 text-white">
                   <div className="relative bg-sky-700 rounded-t-lg p-4 pt-6 md:mx-1">
                     <button
-                      className="flex absolute right-6 top-2 flex-col place-content-center mb-2  z-50"
+                      className="flex absolute right-4 top-2 flex-col place-content-center mb-2  z-50"
                       onClick={handleHideTrainsClick}
                       onKeyUp={handleHideTrainsKeyUp}
                       aria-label="close"
@@ -92,7 +92,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                         close
                       </div>
                     </button>
-                    <h2 className="flex items-center text-2xl pr-14 pt-2">
+                    <h2 className="flex items-center text-2xl pr-14">
                       <div className="mr-1 text-4xl">
                         <MdTrain />
                       </div>
@@ -134,8 +134,15 @@ const Trains = ({ showTrains, setShowTrains }) => {
                                   key={e.eta}
                                 >
                                   <td className="relative text-left p-1">
-                                    <span>{e.destination}</span>
-                                    <span className="text-xs"> {e.info}</span>
+                                    <div>{e.destination}</div>
+                                    {e.info !== "" && (
+                                      <div>
+                                        <MdInfoOutline className="inline text-lg text-slate-500" />
+                                        <span className="ml-1 text-xs text-slate-500">
+                                          {e.info}
+                                        </span>
+                                      </div>
+                                    )}
                                   </td>
                                   <td className="text-right p-1">{e.eta}</td>
                                 </tr>
@@ -180,7 +187,6 @@ const Trains = ({ showTrains, setShowTrains }) => {
                                     <div>{e.destination}</div>
                                     {e.info !== "" && (
                                       <div>
-                                        {" "}
                                         <MdInfoOutline className="inline text-lg text-slate-500" />
                                         <span className="ml-1 text-xs text-slate-500">
                                           {e.info}
@@ -204,7 +210,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                     className="inline-flex cursor-pointer justify-center rounded-lg text-xs font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700"
                     onClick={getTrains}
                   >
-                    Update Info
+                    Refresh Data
                   </button>
                   <a
                     className="inline-flex cursor-pointer justify-center rounded-lg text-xs font-semibold py-2.5 px-4 bg-slate-900 text-white hover:bg-slate-700  ml-4"

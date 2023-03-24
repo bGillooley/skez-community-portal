@@ -157,9 +157,9 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 exit={{ y: 500, opacity: 0 }}
               >
                 <div className="w-full pt-0  md:p-0 text-white">
-                  <div className="bg-sky-700 rounded-t-lg p-4 pt-6 md:mx-1">
+                  <div className="bg-sky-700 rounded-t-lg p-4  md:mx-1">
                     <button
-                      className="flex absolute right-6 top-2 flex-col place-content-center mb-2  z-50"
+                      className="flex absolute right-4 top-2 flex-col place-content-center mb-2  z-50"
                       onClick={handleHideModalClick}
                       onKeyUp={handleHideModalKeyUp}
                       aria-label="close"
@@ -171,7 +171,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                       </div>
                       <div className="w-full text-slate-400 text-xs">close</div>
                     </button>
-                    <div className="mt-2 text-xs font-semibold uppercase text-slate-300 tracking-wider">
+                    <div className="text-xs font-semibold uppercase text-slate-300 tracking-wider">
                       {event.category}
                     </div>
                     <h2 className=" text-2xl md:text-2xl pr-14 pb-1">
@@ -185,34 +185,36 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                 </div>
                 <div className="relative flex flex-col  md:flex-row bg-white">
                   <div className="md:flex md:flex-col justify-between  md:flex-1">
-                    <div className="px-4 py-4">
-                      <div className="md:text-left md:pt-0 text-lg">
-                        <div className="text-xs tracking-wider font-semibold text-slate-400">
-                          VENUE
+                    <div className="p-4">
+                      <div className="p-1 border-2 rounded-md">
+                        <div className="md:text-left md:pt-0 text-lg">
+                          <div className="text-xs tracking-wider font-semibold text-slate-400">
+                            VENUE
+                          </div>
+                          {event.venue}
                         </div>
-                        {event.venue}
-                      </div>
-                      <div className="md:text-left text-xs text-slate-400">
-                        {event.address}
-                      </div>
+                        <div className="md:text-left text-xs text-slate-400">
+                          {event.address}
+                        </div>
 
-                      <div className=" mt-4 mb-4 w-[50px] h-[4px] bg-sky-900"></div>
+                        <div className=" mt-4 mb-4 w-[50px] h-[4px] bg-sky-900"></div>
 
-                      <div className="text-xs tracking-wider font-semibold text-slate-400">
-                        DESCRIPTION
+                        <div className="text-xs tracking-wider font-semibold text-slate-400">
+                          DESCRIPTION
+                        </div>
+                        <div className="text-left  md:text-left md:px-0 text-md pt-1 text-slate-500">
+                          {event.content}
+                        </div>
+                        {event.linkUrl !== null && (
+                          <a
+                            className="inline-block cursor-pointer justify-center rounded-lg text-xs font-semibold mt-4 text-slate-700 py-2.5 px-4 bg-slate-100 hover:bg-slate-200"
+                            href={event.linkUrl}
+                            target="_blank"
+                          >
+                            {event.linkDesc}
+                          </a>
+                        )}
                       </div>
-                      <div className="text-left  md:text-left md:px-0 text-md pt-1 text-slate-500">
-                        {event.content}
-                      </div>
-                      {event.linkUrl !== null && (
-                        <a
-                          className="inline-block cursor-pointer justify-center rounded-lg text-xs font-semibold mt-4 text-slate-700 py-2.5 px-4 bg-slate-100 hover:bg-slate-200"
-                          href={event.linkUrl}
-                          target="_blank"
-                        >
-                          {event.linkDesc}
-                        </a>
-                      )}
                     </div>
                     <div className="flex place-content-center m-2 pt-4 md:pt-0 md:place-content-start">
                       <add-to-calendar-button
