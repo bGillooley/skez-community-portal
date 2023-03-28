@@ -157,7 +157,7 @@ const Weather = ({ showWeather, setShowWeather }) => {
                     </div>
                   </div>
 
-                  <div className="block uppercase text-center pb-4 text-xs font-normal text-slate-400">
+                  <div className="block uppercase text-center pb-4 pt-4 md:pt-0 text-xs font-normal text-slate-400">
                     Last update: {currentWeather.last_updated.split(" ")[1]}
                   </div>
                 </div>

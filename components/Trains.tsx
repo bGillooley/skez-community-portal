@@ -5,7 +5,10 @@ import { MdArrowForwardIos, MdTrain, MdInfoOutline } from "react-icons/md";
 const Trains = ({ showTrains, setShowTrains }) => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
   const [southBoundTrains, setSouthBoundTrains] = useState([]);
+  const [topHeading, setTopHeading] = useState("");
+  const [btmHeading, setBtmHeading] = useState("");
   const [loading, setLoading] = useState(false);
+
   function getTrains() {
     setLoading(true);
     console.log("is loading");
@@ -15,8 +18,9 @@ const Trains = ({ showTrains, setShowTrains }) => {
         JSON.stringify(data);
         setNorthBoundTrains(data.details1);
         setSouthBoundTrains(data.details2);
+        setTopHeading(data.heading1);
+        setBtmHeading(data.heading2);
         setLoading(false);
-        console.log(data.details1);
       });
   }
 
@@ -106,7 +110,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   <div className="p-4">
                     <div className="p-1 border-2 rounded-md mb-4">
                       <h2 className="text-md uppercase  text-center font-semibold">
-                        Northbound
+                        {!loading && topHeading}
                       </h2>
                       <table className="w-full mb-4">
                         <thead>
@@ -155,7 +159,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                     </div>
                     <div className="p-1 border-2 rounded-md">
                       <h2 className="text-md uppercase text-center font-semibold">
-                        Southbound
+                        {btmHeading}
                       </h2>
 
                       <table className="w-full">
