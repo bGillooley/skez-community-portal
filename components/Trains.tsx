@@ -20,6 +20,13 @@ const Trains = ({ showTrains, setShowTrains }) => {
         setSouthBoundTrains(data.details2);
         setTopHeading(data.heading1);
         setBtmHeading(data.heading2);
+        if (topHeading === "") {
+          setTopHeading("Northbound");
+        }
+        if (btmHeading === "") {
+          setBtmHeading("Southbound");
+        }
+        console.log("This...", topHeading);
         setLoading(false);
       });
   }
@@ -110,7 +117,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   <div className="p-4">
                     <div className="p-1 border-2 rounded-md mb-4">
                       <h2 className="text-md uppercase  text-center font-semibold">
-                        {!loading && topHeading}
+                        {topHeading}
                       </h2>
                       <table className="w-full mb-4">
                         <thead>
