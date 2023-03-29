@@ -11,7 +11,6 @@ const Trains = ({ showTrains, setShowTrains }) => {
 
   function getTrains() {
     setLoading(true);
-    console.log("is loading");
     fetch("/api/trains", { cache: "no-cache" })
       .then((res) => res.json())
       .then((data) => {
@@ -20,13 +19,9 @@ const Trains = ({ showTrains, setShowTrains }) => {
         setSouthBoundTrains(data.details2);
         setTopHeading(data.heading1);
         setBtmHeading(data.heading2);
-        if (topHeading === "") {
-          setTopHeading("Northbound");
-        }
-        if (btmHeading === "") {
-          setBtmHeading("Southbound");
-        }
-        console.log("This...", topHeading);
+        console.log("Heading 1...", data.heading1);
+        console.log("Heading 2...", data.heading2);
+
         setLoading(false);
       });
   }
@@ -117,7 +112,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                   <div className="p-4">
                     <div className="p-1 border-2 rounded-md mb-4">
                       <h2 className="text-md uppercase  text-center font-semibold">
-                        {topHeading}
+                        {!loading && topHeading}
                       </h2>
                       <table className="w-full mb-4">
                         <thead>
@@ -166,7 +161,7 @@ const Trains = ({ showTrains, setShowTrains }) => {
                     </div>
                     <div className="p-1 border-2 rounded-md">
                       <h2 className="text-md uppercase text-center font-semibold">
-                        {btmHeading}
+                        {!loading && btmHeading}
                       </h2>
 
                       <table className="w-full">

@@ -37,11 +37,12 @@ export default async function handler(
               info: $(elm).find("td:nth-child(6)").text().trim(),
             };
             trains["details" + (i + 1)].push(obj);
-            trains["heading"];
+            // trains["heading"];
           });
       });
 
     res.statusCode = 200;
+    console.log(trains);
     return res.json(trains);
   } catch (err) {
     console.log(err);

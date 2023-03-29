@@ -15,9 +15,7 @@ const Tides = ({ showTides, setShowTides }) => {
         const tideStuff = JSON.parse(JSON.stringify(data));
         setTideData(tideStuff);
         setLoading(false);
-        console.log("This stuff...", tideStuff);
       });
-    console.log("It ran..");
   }
 
   useEffect(() => {
@@ -118,7 +116,6 @@ const Tides = ({ showTides, setShowTides }) => {
                       billy = billy.replace(/(<br ?\/?>)/g, "<span>");
                       billy = billy.replace(/(<\/li>)/g, "</span></li>");
 
-                      console.log("THis is...", billy);
                       return (
                         <div key={i} id={id} className="">
                           <div className="p-1 border-2 rounded-md mb-4">
