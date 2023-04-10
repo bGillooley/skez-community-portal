@@ -150,7 +150,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
             ></motion.div>
             <div className="flex md:w-screen md:h-screen md:items-center md:justify-center">
               <motion.div
-                className="relative w-full md:w-[680px] h-auto z-50 rounded-lg"
+                className="relative w-full md:w-[740px] h-auto z-50 rounded-lg"
                 initial={{ y: 500, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.25 }}
@@ -188,9 +188,9 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                   </div>
                 </div>
                 <div className="relative flex flex-col  md:flex-row bg-white">
-                  <div className="md:flex md:flex-col justify-between  md:flex-1">
+                  <div className="h-screen md:h-auto md:flex md:flex-col justify-between  md:flex-1">
                     <div className="p-4">
-                      <div className="p-1 border-2 rounded-md">
+                      <div className="p-2 border-2 rounded-md">
                         <div className="md:text-left md:pt-0 text-lg">
                           <div className="text-xs tracking-wider font-semibold text-slate-400">
                             VENUE
@@ -206,7 +206,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                         <div className="text-xs tracking-wider font-semibold text-slate-400">
                           DESCRIPTION
                         </div>
-                        <div className="text-left  md:text-left md:px-0 text-md pt-1 text-slate-500">
+                        <div className="text-left  md:text-left md:px-0 text-base h-36 overflow-auto pt-1 text-slate-500">
                           {event.content}
                         </div>
                         {event.linkUrl !== null && (
@@ -218,26 +218,24 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                             {event.linkDesc}
                           </a>
                         )}
+                        <add-to-calendar-button
+                          name={event.title}
+                          description={event.content}
+                          startDate={calendarDate(event.eventDate)}
+                          startTime={event.eventTime}
+                          endTime={event.eventTime}
+                          timeZone="Europe/Dublin"
+                          location={event.address}
+                          options="'Apple','Google','iCal','Outlook.com'"
+                          buttonStyle="text"
+                          tabIndex={0}
+                        ></add-to-calendar-button>
                       </div>
-                    </div>
-                    <div className="flex place-content-center m-2 pt-4 md:pt-0 md:place-content-start">
-                      <add-to-calendar-button
-                        name={event.title}
-                        description={event.content}
-                        startDate={calendarDate(event.eventDate)}
-                        startTime={event.eventTime}
-                        endTime={event.eventTime}
-                        timeZone="Europe/Dublin"
-                        location={event.address}
-                        options="'Apple','Google','iCal','Outlook.com'"
-                        buttonStyle="text"
-                        tabIndex={0}
-                      ></add-to-calendar-button>
                     </div>
                   </div>
 
-                  <div className="md:flex-1">
-                    <div className="relative px-12 pt-4 pb-12 md:py-0 md:px-0">
+                  <div className="fixed bottom-0 w-full justify-center md:relative md:flex-1">
+                    <div className="relative px-12 pb-4 md:py-0 md:px-0">
                       <Image
                         className="w-[100%] hidden md:block"
                         src={googleStaticMapURL}
@@ -246,7 +244,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                         height={350}
                       />
                       <form
-                        className="h-[400px] md:h-auto md:absolute bottom-0 right-4"
+                        className="md:absolute bottom-0 right-4"
                         action="https://maps.google.com/maps"
                         method="get"
                         target="_blank"
@@ -258,7 +256,7 @@ const Post: React.FC<{ event: EventProps }> = ({ event }) => {
                           value={event.address}
                         />
                         <input
-                          className="inline-flex text-xs font-semibold mb-4 w-full justify-center cursor-pointer rounded-md border border-transparent bg-slate-800 px-4 py-2 text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-xs"
+                          className="inline-flex text-xs font-semibold mb-0 md:mb-4 w-full justify-center cursor-pointer rounded-md border border-transparent bg-slate-800 px-4 py-2 text-white shadow-sm hover:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-xs"
                           type="submit"
                           value="View Map / Get directions"
                           tabIndex={0}

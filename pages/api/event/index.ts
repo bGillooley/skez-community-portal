@@ -16,6 +16,7 @@ export default async function handle(req, res) {
   } = req.body;
 
   const session = await getSession({ req });
+  console.log(session);
   const result = await prisma.event.create({
     data: {
       title: title,
