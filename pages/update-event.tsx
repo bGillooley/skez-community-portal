@@ -14,15 +14,15 @@ const Draft: React.FC = () => {
   const query = router.query;
   const id = query.id;
 
-  const [title, setTitle] = useState(query.title);
-  const [content, setContent] = useState(query.content);
-  const [venue, setVenue] = useState(query.venue);
-  const [address, setAddress] = useState(query.address);
-  const [category, setCategory] = useState(query.category);
-  const [eventTime, setEventTime] = useState(query.eventTime);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [venue, setVenue] = useState("");
+  const [address, setAddress] = useState("");
+  const [category, setCategory] = useState("");
+  const [eventTime, setEventTime] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
-  const [linkUrl, setLinkUrl] = useState(query.eventUrl);
-  const [linkDesc, setLinkDesc] = useState(query.eventDesc);
+  const [linkUrl, setLinkUrl] = useState("");
+  const [linkDesc, setLinkDesc] = useState("");
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -56,9 +56,17 @@ const Draft: React.FC = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      console.log(query.eventDate);
-      const updateDate = query.eventDate;
+      console.log("Look, man,,,", typeof query.eventDate);
+      const updateDate = query.eventDate.toString();
       setEventDate(new Date(updateDate));
+      setVenue(query.venue.toString());
+      setContent(query.content.toString());
+      setCategory(query.category.toString());
+      setEventTime(query.eventTime.toString());
+      setTitle(query.title.toString());
+      setAddress(query.address.toString());
+      setLinkDesc(query.linkDesc.toString());
+      setLinkUrl(query.linkUrl.toString());
     }
   }, [query.eventDate]);
 

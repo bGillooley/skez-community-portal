@@ -4,7 +4,9 @@ import React from "react";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
-import Event, { EventProps } from "../components/Event";
+import { EventProps } from "../components/Event";
+import { formatDateMonth, formatDateDay } from "@/lib/date-formatting";
+import Link from "next/link";
 import prisma from "../lib/prisma";
 import Header from "@/components/Header";
 import Router from "next/router";
@@ -46,13 +48,33 @@ async function deletePost(id: string): Promise<void> {
   Router.reload();
 }
 
+const duplicateEvent = async (event) => {
+  try {
+    const body = {
+      title: event.title,
+      category: event.category,
+      content: event.content,
+      venue: event.venue,
+      address: event.address,
+      eventDate: event.eventDate,
+      eventTime: event.eventTime,
+      linkUrl: event.linkUrl,
+      linkDesc: event.linkUrl,
+    };
+    await fetch("/api/event/duplicate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    Router.reload();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const Drafts: React.FC<Props> = (props) => {
   const { data: session } = useSession();
-  if (session && session.user.role === "admin") {
-    console.log("Billy is Happy");
-  } else {
-    console.log("Billy is sad");
-  }
+
   if (!session) {
     return (
       <>
@@ -80,23 +102,46 @@ const Drafts: React.FC<Props> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="mx-8 lg:mx-auto mt-48 max-w-5xl">
+      <div className="mx-4 lg:mx-auto pt-48 max-w-5xl">
         <h1 className="text-4xl pb-8">Your Events</h1>
-        <main className="lg:grid lg:grid-cols-3 lg:gap-4">
-          {props.drafts.map((event) => (
-            <div className="mb-4 rounded border border-gray-100 bg-slate-50">
-              <Event event={event} />
-              <div className="p-2 shadow-inner">
-                <button
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-2 py-1 text-white shadow-sm hover:bg-red-700 sm:mr-4 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
-                  onClick={() => deletePost(event.id)}
-                >
-                  Delete Event
-                </button>
+        {props.drafts.map((event) => (
+          <div
+            key={event.id}
+            className="md:flex w-full items-center p-4 mb-4 shadow-sm bg-white hover:bg-slate-50"
+          >
+            <div className="w-[100px]">
+              <div className="text-xs text-slate-400">Date of event</div>
+              <div>
+                <span>{formatDateMonth(event.eventDate)}, </span>
+                <span>{formatDateDay(event.eventDate)}</span>
               </div>
             </div>
-          ))}
-        </main>
+            <div className="flex-1">
+              <div className="text-xs text-slate-400">Event title</div>
+              <div>{event.title}</div>
+            </div>
+            <div className="pt-4 md:pt-0">
+              <button className="" onClick={() => deletePost(event.id)}>
+                <span className="underline text-red-500">Delete</span>
+              </button>
+              <span className="mx-2">|</span>
+              <Link
+                href={{
+                  pathname: "/update-event",
+                  query: event,
+                }}
+              >
+                <span className="underline text-slate-400">Edit/Update</span>
+              </Link>
+              <span className="mx-2">|</span>
+              <button className="" onClick={() => duplicateEvent(event)}>
+                <span className="underline text-slate-400">
+                  Duplicate event
+                </span>
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
       <style jsx>{`
         .post {

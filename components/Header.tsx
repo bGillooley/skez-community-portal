@@ -64,7 +64,7 @@ const Header: React.FC = () => {
     left = (
       <div className="left">
         <Link href="/" legacyBehavior>
-          <a className="bold" data-active={isActive("/")}>
+          <a className="bold text-black" data-active={isActive("/")}>
             Home
           </a>
         </Link>
@@ -77,9 +77,7 @@ const Header: React.FC = () => {
         )}
         {session.user.role === "admin" && (
           <Link href="/publish-event" legacyBehavior>
-            <a data-active={isActive("/publish-event")}>
-              Moderate/Publish/Delete
-            </a>
+            <a data-active={isActive("/publish-event")}>Manage Events</a>
           </Link>
         )}
 
@@ -95,7 +93,6 @@ const Header: React.FC = () => {
           }
 
           .left a[data-active="true"] {
-            color: gray;
           }
 
           a + a {
@@ -161,8 +158,9 @@ const Header: React.FC = () => {
           <style jsx>{`
             nav {
               display: flex;
-              padding: 2rem;
+              padding: 1rem;
               align-items: center;
+              background: #f1f5f9;
             }
           `}</style>
         </nav>
