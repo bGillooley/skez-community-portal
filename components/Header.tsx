@@ -76,8 +76,8 @@ const Header: React.FC = () => {
           </Link>
         )}
         {session.user.role === "admin" && (
-          <Link href="/publish-event" legacyBehavior>
-            <a data-active={isActive("/publish-event")}>Manage Events</a>
+          <Link href="/manage-events" legacyBehavior>
+            <a data-active={isActive("/manage-events")}>Manage Events</a>
           </Link>
         )}
 

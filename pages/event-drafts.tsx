@@ -102,46 +102,48 @@ const Drafts: React.FC<Props> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="mx-4 lg:mx-auto pt-48 max-w-5xl">
-        <h1 className="text-4xl pb-8">Your Events</h1>
-        {props.drafts.map((event) => (
-          <div
-            key={event.id}
-            className="md:flex w-full items-center p-4 mb-4 shadow-sm bg-white hover:bg-slate-50"
-          >
-            <div className="w-[100px]">
-              <div className="text-xs text-slate-400">Date of event</div>
-              <div>
-                <span>{formatDateMonth(event.eventDate)}, </span>
-                <span>{formatDateDay(event.eventDate)}</span>
+      <div className="bg-slate-100 pb-12">
+        <div className="mx-4 lg:mx-auto pt-48 max-w-5xl">
+          <h1 className="text-4xl pb-8">Your Events</h1>
+          {props.drafts.map((event) => (
+            <div
+              key={event.id}
+              className="md:flex w-full items-center p-4 mb-4 shadow-sm bg-white hover:bg-slate-50"
+            >
+              <div className="w-[100px]">
+                <div className="text-xs text-slate-400">Date of event</div>
+                <div>
+                  <span>{formatDateMonth(event.eventDate)}, </span>
+                  <span>{formatDateDay(event.eventDate)}</span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="text-xs text-slate-400">Event title</div>
+                <div>{event.title}</div>
+              </div>
+              <div className="pt-4 md:pt-0">
+                <button className="" onClick={() => deletePost(event.id)}>
+                  <span className="underline text-red-500">Delete</span>
+                </button>
+                <span className="mx-2">|</span>
+                <Link
+                  href={{
+                    pathname: "/update-event",
+                    query: event,
+                  }}
+                >
+                  <span className="underline text-slate-400">Edit/Update</span>
+                </Link>
+                <span className="mx-2">|</span>
+                <button className="" onClick={() => duplicateEvent(event)}>
+                  <span className="underline text-slate-400">
+                    Duplicate event
+                  </span>
+                </button>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="text-xs text-slate-400">Event title</div>
-              <div>{event.title}</div>
-            </div>
-            <div className="pt-4 md:pt-0">
-              <button className="" onClick={() => deletePost(event.id)}>
-                <span className="underline text-red-500">Delete</span>
-              </button>
-              <span className="mx-2">|</span>
-              <Link
-                href={{
-                  pathname: "/update-event",
-                  query: event,
-                }}
-              >
-                <span className="underline text-slate-400">Edit/Update</span>
-              </Link>
-              <span className="mx-2">|</span>
-              <button className="" onClick={() => duplicateEvent(event)}>
-                <span className="underline text-slate-400">
-                  Duplicate event
-                </span>
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <style jsx>{`
         .post {

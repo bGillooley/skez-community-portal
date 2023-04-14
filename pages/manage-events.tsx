@@ -117,7 +117,7 @@ const Drafts: React.FC<Props> = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div className="bg-slate-100">
+      <div className="bg-slate-100 pb-12">
         <div className="mx-4 lg:mx-auto pt-48 max-w-5xl">
           <h1 className="text-4xl pb-8">Mange Events</h1>
 
