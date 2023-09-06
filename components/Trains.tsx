@@ -4,9 +4,9 @@ import { MdArrowForwardIos, MdTrain, MdInfoOutline } from "react-icons/md";
 
 const Trains = ({ showTrains, setShowTrains }) => {
   const [northBoundTrains, setNorthBoundTrains] = useState([]);
-  const [southBoundTrains, setSouthBoundTrains] = useState([]);
-  const [topHeading, setTopHeading] = useState("");
-  const [btmHeading, setBtmHeading] = useState("");
+  //const [southBoundTrains, setSouthBoundTrains] = useState([]);
+  //const [topHeading, setTopHeading] = useState("");
+  //const [btmHeading, setBtmHeading] = useState("");
   const [loading, setLoading] = useState(false);
 
   function getTrains() {
@@ -14,13 +14,12 @@ const Trains = ({ showTrains, setShowTrains }) => {
     fetch("/api/trains", { cache: "no-cache" })
       .then((res) => res.json())
       .then((data) => {
-        JSON.stringify(data);
+        JSON.stringify(data.details1);
+        console.log("This is...", data);
         setNorthBoundTrains(data.details1);
-        setSouthBoundTrains(data.details2);
-        setTopHeading(data.heading1);
-        setBtmHeading(data.heading2);
-        console.log("Heading 1...", data.heading1);
-        console.log("Heading 2...", data.heading2);
+        //setSouthBoundTrains(data.details2);
+        //setTopHeading(data.heading1);
+        //setBtmHeading(data.heading2);
 
         setLoading(false);
       });
@@ -110,9 +109,9 @@ const Trains = ({ showTrains, setShowTrains }) => {
                 </div>
                 <div className="bg-white">
                   <div className="p-4">
-                    <div className="p-1 border-2 rounded-md mb-4">
+                    <div className="p-1 border-2 rounded-md">
                       <h2 className="text-md uppercase  text-center font-semibold">
-                        {!loading && topHeading}
+                        {!loading}
                       </h2>
                       <table className="w-full mb-4">
                         <thead>
@@ -153,58 +152,6 @@ const Trains = ({ showTrains, setShowTrains }) => {
                                     )}
                                   </td>
                                   <td className="text-right p-1">{e.eta}</td>
-                                </tr>
-                              );
-                            })}
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className="p-1 border-2 rounded-md">
-                      <h2 className="text-md uppercase text-center font-semibold">
-                        {!loading && btmHeading}
-                      </h2>
-
-                      <table className="w-full">
-                        <thead>
-                          <tr>
-                            <th className="text-left text-xs uppercase tracking-wider font-semibold p-1">
-                              Destination
-                            </th>
-                            <th className="text-right text-xs uppercase tracking-wider font-semibold p-1">
-                              Departure Time
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {southBoundTrains === undefined && (
-                            <tr>
-                              <td colSpan="2">
-                                No trains scheduled at this time
-                              </td>
-                            </tr>
-                          )}
-
-                          {southBoundTrains !== undefined &&
-                            southBoundTrains.map((e) => {
-                              return (
-                                <tr
-                                  className="odd:bg-slate-100 even:bg-white"
-                                  key={e.eta}
-                                >
-                                  <td className="relative text-left p-1">
-                                    <div>{e.destination}</div>
-                                    {e.info !== "" && (
-                                      <div>
-                                        <MdInfoOutline className="inline text-lg text-slate-500" />
-                                        <span className="ml-1 text-xs text-slate-500">
-                                          {e.info}
-                                        </span>
-                                      </div>
-                                    )}
-                                  </td>
-                                  <td className="text-right p-1">
-                                    <span>{e.eta}</span>
-                                  </td>
                                 </tr>
                               );
                             })}

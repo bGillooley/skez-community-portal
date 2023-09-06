@@ -15,11 +15,11 @@ export default async function handler(
     const $ = cheerio.load(htmlString);
 
     let trains = {};
-    $("div.ir-live-timetable > table")
+    $("div.ir-live-timetable > table:first")
       .toArray()
       .map((element, i) => {
-        const section = $(element).find("caption:first").text().trim();
-        trains["heading" + (i + 1)] = section;
+        //const section = $(element).find("caption:first").text().trim();
+        // trains["heading" + (i + 1)] = section;
         trains["details" + (i + 1)] = [];
         let obj = {};
         $(element)
@@ -27,11 +27,11 @@ export default async function handler(
           .each((idx, elm) => {
             let obj = {
               destination: $(elm)
-                .find("button:first")
+                .find("td:nth-child(2) button")
                 .text()
                 .trim()
                 .replace(/\s*[\[{(].*?[)}\]]\s*/g, ""),
-              heading: section,
+              // heading: section,
               eta: $(elm).find("td:nth-child(4)").text().trim(),
               duein: $(elm).find("td:nth-child(5)").text().trim(),
               info: $(elm).find("td:nth-child(6)").text().trim(),
